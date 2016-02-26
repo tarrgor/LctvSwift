@@ -1,10 +1,10 @@
 # LctvSwift
 
 [![CI Status](http://img.shields.io/travis/tarrgor/LctvSwift.svg?style=flat)](https://travis-ci.org/tarrgor/LctvSwift)
-[![Version](https://img.shields.io/cocoapods/v/LctvSwift.svg?style=flat)](http://cocoapods.org/pods/LctvSwift)
-[![License](https://img.shields.io/cocoapods/l/LctvSwift.svg?style=flat)](http://cocoapods.org/pods/LctvSwift)
-[![Platform](https://img.shields.io/cocoapods/p/LctvSwift.svg?style=flat)](http://cocoapods.org/pods/LctvSwift)
-
+[![Version](https://img.shields.io/badge/pod-0.6.1-blue.svg)](http://cocoapods.org/pods/LctvSwift)
+[![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://cocoapods.org/pods/LctvSwift)
+[![Platform](https://img.shields.io/badge/platform-iOS-blue.svg?style=flat)](http://cocoapods.org/pods/LctvSwift)
+https://img.shields.io/cocoapods/v/AFNetworking.svg
 ## Usage
 
 To run the example project, clone the repo, and run `pod install` from the Example directory first.
