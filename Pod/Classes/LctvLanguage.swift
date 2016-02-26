@@ -10,8 +10,8 @@ import Foundation
 import SwiftyJSON
 
 public struct LctvLanguage : JSONInitializable {
-  var name: String?
-  var url: String?
+  public var name: String?
+  public var url: String?
   
   public init(json: JSON) {
     name = json["name"].string

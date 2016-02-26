@@ -11,10 +11,10 @@ import SwiftyJSON
 
 public class LctvResultContainer<T: JSONInitializable> : JSONInitializable {
   
-  var count: Int? = 0
-  var next: String? = nil
-  var previous: String? = nil
-  var results: Array<T> = []
+  public var count: Int? = 0
+  public var next: String? = nil
+  public var previous: String? = nil
+  public var results: Array<T> = []
 
   public required init(json: JSON) {
     count = json["count"].int

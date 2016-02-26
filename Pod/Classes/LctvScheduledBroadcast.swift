@@ -10,16 +10,16 @@ import Foundation
 import SwiftyJSON
 
 public struct LctvScheduledBroadcast : JSONInitializable {
-  var id: Int?
-  var title: String?
-  var livestream: String?
-  var codingCategory: String?
-  var difficulty: String?
-  var startTime: String?
-  var startTimeOriginalTimezone: String?
-  var originalTimezone: String?
-  var isFeatured: Bool?
-  var isRecurring: Bool?
+  public var id: Int?
+  public var title: String?
+  public var livestream: String?
+  public var codingCategory: String?
+  public var difficulty: String?
+  public var startTime: String?
+  public var startTimeOriginalTimezone: String?
+  public var originalTimezone: String?
+  public var isFeatured: Bool?
+  public var isRecurring: Bool?
   
   public init(json: JSON) {
     id = json["id"].int

@@ -11,7 +11,7 @@ import SwiftyJSON
 
 public class LctvArrayContainer<T: JSONInitializable> : JSONInitializable {
   
-  var array: [T] = []
+  public var array: [T] = []
   
   public required init(json: JSON) {
   

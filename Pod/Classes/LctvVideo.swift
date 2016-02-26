@@ -11,20 +11,20 @@ import SwiftyJSON
 
 public struct LctvVideo : JSONInitializable {
   
-  var url: String?
-  var slug: String?
-  var user: String?
-  var title: String?
-  var description: String?
-  var codingCategory: String?
-  var difficulty: String?
-  var language: String?
-  var productType: String?
-  var creationTime: String?
-  var duration: Int?
-  var region: String?
-  var viewersOverall: Int?
-  var viewingUrls: Array<String> = []
+  public var url: String?
+  public var slug: String?
+  public var user: String?
+  public var title: String?
+  public var description: String?
+  public var codingCategory: String?
+  public var difficulty: String?
+  public var language: String?
+  public var productType: String?
+  public var creationTime: String?
+  public var duration: Int?
+  public var region: String?
+  public var viewersOverall: Int?
+  public var viewingUrls: Array<String> = []
   
   public init(json: JSON) {
     url = json["url"].string

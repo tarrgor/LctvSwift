@@ -10,20 +10,20 @@ import Foundation
 import SwiftyJSON
 
 public struct LctvUserChannel : JSONInitializable {
-  var url: String?
-  var user: String?
-  var userSlug: String?
-  var title: String?
-  var description: String?
-  var codingCategory: String?
-  var difficulty: String?
-  var language: String?
-  var tags: String?
-  var isLive: Bool?
-  var viewersLive: Int?
-  var viewingUrls: Array<String> = []
-  var streamingKey: String?
-  var streamingUrl: String?
+  public var url: String?
+  public var user: String?
+  public var userSlug: String?
+  public var title: String?
+  public var description: String?
+  public var codingCategory: String?
+  public var difficulty: String?
+  public var language: String?
+  public var tags: String?
+  public var isLive: Bool?
+  public var viewersLive: Int?
+  public var viewingUrls: Array<String> = []
+  public var streamingKey: String?
+  public var streamingUrl: String?
   
   public init(json: JSON) {
     url = json["url"].string

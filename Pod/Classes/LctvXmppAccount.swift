@@ -10,11 +10,11 @@ import Foundation
 import SwiftyJSON
 
 public struct LctvXmppAccount : JSONInitializable {
-  var user: String?
-  var jid: String?
-  var password: String?
-  var color: String?
-  var isStaff: Bool?
+  public var user: String?
+  public var jid: String?
+  public var password: String?
+  public var color: String?
+  public var isStaff: Bool?
   
   public init(json: JSON) {
     user = json["user"].string

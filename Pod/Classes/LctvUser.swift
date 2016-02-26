@@ -11,20 +11,20 @@ import SwiftyJSON
 
 public struct LctvUser : JSONInitializable {
 
-  var url: String?
-  var userName: String?
-  var slug: String?
-  var country: String?
-  var city: String?
-  var favoriteProgramming: String?
-  var favoriteIde: String?
-  var favoriteCodingBackgroundMusic: String?
-  var favoriteCode: String?
-  var yearsProgramming: Int?
-  var wantLearn: Array<String>? = []
-  var registrationDate: String?
-  var timeZone: String?
-  var viewingKey: String?
+  public var url: String?
+  public var userName: String?
+  public var slug: String?
+  public var country: String?
+  public var city: String?
+  public var favoriteProgramming: String?
+  public var favoriteIde: String?
+  public var favoriteCodingBackgroundMusic: String?
+  public var favoriteCode: String?
+  public var yearsProgramming: Int?
+  public var wantLearn: Array<String>? = []
+  public var registrationDate: String?
+  public var timeZone: String?
+  public var viewingKey: String?
   
   public init(json: JSON) {
     url = json["url"].string

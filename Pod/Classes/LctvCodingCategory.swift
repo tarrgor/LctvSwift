@@ -11,9 +11,9 @@ import SwiftyJSON
 
 public struct LctvCodingCategory : JSONInitializable {
   
-  var name: String?
-  var url: String?
-  var sort: Int?
+  public var name: String?
+  public var url: String?
+  public var sort: Int?
   
   public init(json: JSON) {
     name = json["name"].string
