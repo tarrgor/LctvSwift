@@ -20,9 +20,9 @@ extension LctvApi {
     let oauthswift = OAuth2Swift(
       consumerKey:    authInfo.clientId,
       consumerSecret: authInfo.secret,
-      authorizeUrl:   "https://www.livecoding.tv/o/authorize/",
-      accessTokenUrl: "https://www.livecoding.tv/o/token/",
-      responseType:   "code"
+      authorizeUrl:   kUrlLctvAuthorize,
+      accessTokenUrl: kUrlLctvToken,
+      responseType:   kOAuthResponseTypeCode
     )
     let state: String = generateStateWithLength(20) as String
     
@@ -32,12 +32,12 @@ extension LctvApi {
       oauthswift.authorize_url_handler = handler
     }
     
-    oauthswift.authorizeWithCallbackURL( NSURL(string: "http://localhost:8080/oauth-callback")!,
+    oauthswift.authorizeWithCallbackURL( NSURL(string: kUrlOAuthCallback)!,
       scope: scope,
       state: state, success: {
         credential, response, parameters in
         self._authInfo?.accessToken = credential.oauth_token
-        if let refreshToken = parameters["refresh_token"] {
+        if let refreshToken = parameters[kOAuthRefreshToken] {
           self._authInfo?.refreshToken = refreshToken
         }
         try! self._authInfo?.updateInSecureStore()
@@ -54,20 +54,20 @@ extension LctvApi {
         let oauthswift = OAuth2Swift(
           consumerKey:    authInfo.clientId,
           consumerSecret: authInfo.secret,
-          authorizeUrl:   "https://www.livecoding.tv/o/authorize/",
-          accessTokenUrl: "https://www.livecoding.tv/o/token/",
-          responseType:   "code"
+          authorizeUrl:   kUrlLctvAuthorize,
+          accessTokenUrl: kUrlLctvToken,
+          responseType:   kOAuthResponseTypeCode
         )
 
         let parameters = [
-          "grant_type":"refresh_token",
-          "refresh_token":authInfo.refreshToken,
+          "grant_type":kOAuthRefreshToken,
+          kOAuthRefreshToken:authInfo.refreshToken,
           "client_id":authInfo.clientId,
         ]
-        oauthswift.client.post("https://www.livecoding.tv/o/token/", parameters: parameters, headers: httpHeaders(), success: { data, response in
+        oauthswift.client.post(kUrlLctvToken, parameters: parameters, headers: httpHeaders(), success: { data, response in
           let json = JSON(data: data)
-          self._authInfo?.accessToken = json["access_token"].string!
-          self._authInfo?.refreshToken = json["refresh_token"].string!
+          self._authInfo?.accessToken = json[kOAuthAccessToken].string!
+          self._authInfo?.refreshToken = json[kOAuthRefreshToken].string!
           try! self._authInfo?.updateInSecureStore()
           if let callback = success {
             callback()
@@ -98,11 +98,12 @@ extension LctvApi {
       return [:]
     }
     return [
-      "Authorization":"Bearer \(authInfo.accessToken)",
-      "Accept":"application/json"
+      kHttpHeaderAuthorization:"Bearer \(authInfo.accessToken)",
+      kHttpHeaderAccept:kMimeTypeJson
     ]
   }
-  
+
+  /*
   public func logAuthInfo() {
     print("AuthInfo:")
     print("=========")
@@ -111,4 +112,5 @@ extension LctvApi {
     print("Token   : \(_authInfo?.accessToken)")
     print("RefToken: \(_authInfo?.refreshToken)")
   }
+  */
 }

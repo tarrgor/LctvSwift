@@ -13,6 +13,7 @@ public class LctvApi {
   let serverUtil = HttpServerUtil()
   
   public var oAuthUrlHandler: OAuthSwiftURLHandlerType? = nil
+  public var pageSize: Int = 50
   
   var _authInfo: LctvAuthInfo? = nil
   

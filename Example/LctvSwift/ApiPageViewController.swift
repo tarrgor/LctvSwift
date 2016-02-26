@@ -13,17 +13,20 @@ class ApiPageViewController : UIViewController {
   
   var api: LctvApi!
   
+  var codingCategories: LctvResultContainer<LctvCodingCategory>? = nil
+  
   @IBAction func getCodingCategories(sender: UIButton) {
-    api.getCodingCategories({
+    api.getCodingCategories(success: {
       result in
       print(result)
+      self.codingCategories = result
     }, failure: { message, json in
       self.showAlertWithTitle("ERROR", message: message)
     })
   }
   
   @IBAction func getSwiftCodingCategory(sender: UIButton) {
-    api.getCodingCategory("Swift", success: {
+    api.getCodingCategoryByName("Swift", success: {
       result in
       print(result)
     }, failure: { message, json in
@@ -32,7 +35,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getLivestreams(sender: UIButton) {
-    api.getLivestreams({
+    api.getLivestreams(success: {
       result in
       print(result)
     }, failure: { message, json in
@@ -41,7 +44,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getLivestreamsOnAir(sender: UIButton) {
-    api.getLivestreamsOnAir({
+    api.getLivestreamsOnAir(success: {
       result in
       print(result)
     }, failure: { message, json in
@@ -50,7 +53,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getLivestreamOfKarrmarr(sender: UIButton) {
-    api.getLivestream("karrmarr", success:  {
+    api.getLivestreamByUserSlug("karrmarr", success:  {
       result in
       print(result)
     }, failure: { message, json in
@@ -59,7 +62,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getLanguages(sender: UIButton) {
-    api.getLanguages({
+    api.getLanguages(success: {
       result in
       print(result)
     }, failure: { message, json in
@@ -68,7 +71,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getLanguageGerman(sender: UIButton) {
-    api.getLanguage("German", success: {
+    api.getLanguageByName("German", success: {
       result in
       print(result)
     }, failure: { message, json in
@@ -77,7 +80,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getCurrentUser(sender: UIButton) {
-    api.getCurrentUser({
+    api.getCurrentUser(success: {
       result in
       print(result)
     }, failure: { message, json in
@@ -86,7 +89,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getCurrentUserFollowers(sender: UIButton) {
-    api.getCurrentUserFollowers({
+    api.getCurrentUserFollowers(success: {
       result in
       print(result)
     }, failure: { message, json in
@@ -95,7 +98,7 @@ class ApiPageViewController : UIViewController {
   }
 
   @IBAction func getCurrentUserFollows(sender: UIButton) {
-    api.getCurrentUserFollows({
+    api.getCurrentUserFollows(success: {
       result in
       print(result)
       }, failure: { message, json in
@@ -104,7 +107,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getUserChatAccount(sender: UIButton) {
-    api.getUserChatAccount({
+    api.getUserChatAccount(success: {
       result in
       print(result)
     }, failure: { message, json in
@@ -113,7 +116,7 @@ class ApiPageViewController : UIViewController {
   }
 
   @IBAction func getViewingKey(sender: UIButton) {
-    api.getViewingKey({
+    api.getViewingKey(success: {
       result in
       print(result)
       }, failure: { message, json in
@@ -122,7 +125,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getUserVideos(sender: UIButton) {
-    api.getUserVideos({
+    api.getUserVideos(success: {
       result in
       print(result)
       }, failure: { message, json in
@@ -131,7 +134,7 @@ class ApiPageViewController : UIViewController {
   }
 
   @IBAction func getUserLatestVideos(sender: UIButton) {
-    api.getUserLatestVideos({
+    api.getUserLatestVideos(success: {
       result in
       print(result)
       }, failure: { message, json in
@@ -140,7 +143,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getUserChannel(sender: UIButton) {
-    api.getUserChannel({
+    api.getUserChannel(success: {
       result in
       print(result)
       }, failure: { message, json in
@@ -149,7 +152,7 @@ class ApiPageViewController : UIViewController {
   }
 
   @IBAction func getUserChannelOnAir(sender: UIButton) {
-    api.getUserChannelOnAir({
+    api.getUserChannelOnAir(success: {
       result in
       print(result)
       }, failure: { message, json in
@@ -158,7 +161,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getUserProfile(sender: UIButton) {
-    api.getUserProfile("karrmarr", success: {
+    api.getUserProfileBySlug("karrmarr", success: {
       result in
       print(result)
       }, failure: { message, json in
@@ -167,7 +170,7 @@ class ApiPageViewController : UIViewController {
   }
 
   @IBAction func getScheduledBroadcasts(sender: UIButton) {
-    api.getScheduledBroadcasts({
+    api.getScheduledBroadcasts(success: {
       result in
       print(result)
       }, failure: { message, json in
@@ -176,7 +179,7 @@ class ApiPageViewController : UIViewController {
   }
 
   @IBAction func getScheduledBroadcast21855(sender: UIButton) {
-    api.getScheduledBroadcast(21855, success: {
+    api.getScheduledBroadcastById(21855, success: {
       result in
       print(result)
       }, failure: { message, json in
@@ -185,7 +188,7 @@ class ApiPageViewController : UIViewController {
   }
 
   @IBAction func getVideos(sender: UIButton) {
-    api.getVideos({
+    api.getVideos(success: {
       result in
       print(result)
       }, failure: { message, json in
@@ -194,7 +197,7 @@ class ApiPageViewController : UIViewController {
   }
   
   @IBAction func getVideo100170(sender: UIButton) {
-    api.getVideo("100-170", success: {
+    api.getVideoBySlug("100-170", success: {
       result in
       print(result)
       }, failure: { message, json in
@@ -202,5 +205,26 @@ class ApiPageViewController : UIViewController {
     })
   }
 
+  @IBAction func codingCategoriesNextPage(sender: UIButton) {
+    if codingCategories != nil {
+      api.nextPage(codingCategories!, success: { result in
+        print(result)
+        self.codingCategories = result
+      }, failure: { message, json in
+        self.showAlertWithTitle("ERROR", message: "Could not retrieve next page: \(message)")
+      })
+    }
+  }
+
+  @IBAction func codingCategoriesPrevPage(sender: UIButton) {
+    if codingCategories != nil {
+      api.previousPage(codingCategories!, success: { result in
+        print(result)
+        self.codingCategories = result
+      }, failure: { message, json in
+        self.showAlertWithTitle("ERROR", message: "Could not retrieve previous page: \(message)")
+      })
+    }
+  }
 }
 

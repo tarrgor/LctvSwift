@@ -227,6 +227,20 @@
                                     <action selector="getVideo100170:" destination="Fz3-sB-pmm" eventType="touchUpInside" id="4ma-eE-1t6"/>
                                 </connections>
                             </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="vtq-5y-DL8">
+                                <rect key="frame" x="378" y="490" width="202" height="30"/>
+                                <state key="normal" title="Coding Categories Next Page"/>
+                                <connections>
+                                    <action selector="codingCategoriesNextPage:" destination="Fz3-sB-pmm" eventType="touchUpInside" id="eLg-2q-pXO"/>
+                                </connections>
+                            </button>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="tQk-oR-eTN">
+                                <rect key="frame" x="379" y="528" width="201" height="30"/>
+                                <state key="normal" title="Coding Categories Prev Page"/>
+                                <connections>
+                                    <action selector="codingCategoriesPrevPage:" destination="Fz3-sB-pmm" eventType="touchUpInside" id="VHE-uT-9B1"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="calibratedWhite"/>
                         <constraints>
@@ -254,6 +268,8 @@
                             <constraint firstItem="2oE-ie-kAI" firstAttribute="leading" secondItem="KlE-cK-2QM" secondAttribute="leadingMargin" id="UH6-Ee-T4x"/>
                             <constraint firstItem="SH8-Er-EHc" firstAttribute="top" secondItem="6D9-y2-ycl" secondAttribute="bottom" constant="8" symbolic="YES" id="W0i-L3-WK0"/>
                             <constraint firstAttribute="trailingMargin" secondItem="zoZ-w2-It9" secondAttribute="trailing" id="Xwq-Md-dsi"/>
+                            <constraint firstItem="vtq-5y-DL8" firstAttribute="trailing" secondItem="KlE-cK-2QM" secondAttribute="trailingMargin" id="YVQ-cO-Ot6"/>
+                            <constraint firstItem="tQk-oR-eTN" firstAttribute="top" secondItem="vtq-5y-DL8" secondAttribute="bottom" constant="8" id="b8i-KY-7mf"/>
                             <constraint firstItem="cS5-Fd-ZKG" firstAttribute="top" secondItem="2oE-ie-kAI" secondAttribute="bottom" constant="8" symbolic="YES" id="byx-qU-0rf"/>
                             <constraint firstAttribute="trailingMargin" secondItem="c8G-C7-Y9z" secondAttribute="trailing" id="c3t-0x-M4d"/>
                             <constraint firstItem="P9b-T7-eZM" firstAttribute="top" secondItem="c8G-C7-Y9z" secondAttribute="bottom" constant="8" symbolic="YES" id="cNk-9a-8vV"/>
@@ -261,6 +277,7 @@
                             <constraint firstItem="zcW-ys-fhl" firstAttribute="top" secondItem="IZl-av-D1Y" secondAttribute="bottom" constant="8" symbolic="YES" id="dza-fz-s63"/>
                             <constraint firstItem="c8G-C7-Y9z" firstAttribute="top" secondItem="Ceh-BL-cN7" secondAttribute="bottom" constant="8" symbolic="YES" id="e63-AB-mM7"/>
                             <constraint firstItem="SH8-Er-EHc" firstAttribute="leading" secondItem="KlE-cK-2QM" secondAttribute="leadingMargin" id="gyl-3a-yaB"/>
+                            <constraint firstItem="vtq-5y-DL8" firstAttribute="top" secondItem="uu0-qq-Gky" secondAttribute="bottom" constant="122" id="h5n-36-6e1"/>
                             <constraint firstItem="Kam-mJ-AVy" firstAttribute="leading" secondItem="KlE-cK-2QM" secondAttribute="leadingMargin" id="ix0-df-aYS"/>
                             <constraint firstItem="zoZ-w2-It9" firstAttribute="top" secondItem="PVc-ek-vJj" secondAttribute="bottom" constant="8" symbolic="YES" id="k7Y-nC-meE"/>
                             <constraint firstItem="uu0-qq-Gky" firstAttribute="top" secondItem="P9b-T7-eZM" secondAttribute="bottom" constant="8" symbolic="YES" id="lqt-sa-1Qt"/>
@@ -270,6 +287,7 @@
                             <constraint firstItem="Jvw-Gk-78v" firstAttribute="leading" secondItem="KlE-cK-2QM" secondAttribute="leadingMargin" id="uai-dt-zBL"/>
                             <constraint firstItem="NQa-cX-24Y" firstAttribute="top" secondItem="xqD-p3-KeF" secondAttribute="bottom" constant="8" symbolic="YES" id="v8m-ZN-VeJ"/>
                             <constraint firstItem="IZl-av-D1Y" firstAttribute="leading" secondItem="KlE-cK-2QM" secondAttribute="leadingMargin" id="vdt-fr-8PM"/>
+                            <constraint firstAttribute="trailingMargin" secondItem="tQk-oR-eTN" secondAttribute="trailing" id="waN-m9-pvG"/>
                             <constraint firstItem="9Tu-Jl-2iC" firstAttribute="top" secondItem="FCY-2m-3tD" secondAttribute="bottom" constant="8" symbolic="YES" id="zPE-6c-fXt"/>
                             <constraint firstItem="0ww-c3-fRC" firstAttribute="top" secondItem="9Tu-Jl-2iC" secondAttribute="bottom" constant="8" symbolic="YES" id="znL-Jt-Rhc"/>
                         </constraints>
