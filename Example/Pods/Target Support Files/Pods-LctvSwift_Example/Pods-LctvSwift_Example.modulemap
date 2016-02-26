@@ -1,0 +1,6 @@
+framework module Pods_LctvSwift_Example {
+  umbrella header "Pods-LctvSwift_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
