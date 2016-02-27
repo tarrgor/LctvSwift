@@ -41,6 +41,8 @@ extension LctvApi {
           self._authInfo?.refreshToken = refreshToken
         }
         try! self._authInfo?.updateInSecureStore()
+        self._authInfo?.clientId = ""
+        self._authInfo?.secret = ""
         self.serverUtil.stopServer()
       }, failure: { error in
         print(error.localizedDescription)
@@ -51,33 +53,41 @@ extension LctvApi {
   public func refreshToken(success: (() -> ())? = nil, failure: ((NSError) -> ())? = nil) {
     if let authInfo = _authInfo, hasToken = _authInfo?.hasAccessToken() {
       if hasToken {
-        let oauthswift = OAuth2Swift(
-          consumerKey:    authInfo.clientId,
-          consumerSecret: authInfo.secret,
-          authorizeUrl:   kUrlLctvAuthorize,
-          accessTokenUrl: kUrlLctvToken,
-          responseType:   kOAuthResponseTypeCode
-        )
-
-        let parameters = [
-          "grant_type":kOAuthRefreshToken,
-          kOAuthRefreshToken:authInfo.refreshToken,
-          "client_id":authInfo.clientId,
-        ]
-        oauthswift.client.post(kUrlLctvToken, parameters: parameters, headers: httpHeaders(), success: { data, response in
-          let json = JSON(data: data)
-          self._authInfo?.accessToken = json[kOAuthAccessToken].string!
-          self._authInfo?.refreshToken = json[kOAuthRefreshToken].string!
-          try! self._authInfo?.updateInSecureStore()
-          if let callback = success {
-            callback()
-          }
-        }, failure: { error in
-          print(error)
-          if let callback = failure {
-            callback(error)
-          }
-        })
+        if let loadedAuthInfo = authInfo.readFromSecureStore() {
+          authInfo.clientId = (loadedAuthInfo.data?["clientId"] as? String) ?? ""
+          authInfo.secret = (loadedAuthInfo.data?["secret"] as? String) ?? ""
+          
+          let oauthswift = OAuth2Swift(
+            consumerKey:    authInfo.clientId,
+            consumerSecret: authInfo.secret,
+            authorizeUrl:   kUrlLctvAuthorize,
+            accessTokenUrl: kUrlLctvToken,
+            responseType:   kOAuthResponseTypeCode
+          )
+          
+          let parameters = [
+            "grant_type":kOAuthRefreshToken,
+            kOAuthRefreshToken:authInfo.refreshToken,
+            "client_id":authInfo.clientId,
+          ]
+          oauthswift.client.post(kUrlLctvToken, parameters: parameters, headers: httpHeaders(), success: { data, response in
+            let json = JSON(data: data)
+            authInfo.accessToken = json[kOAuthAccessToken].string!
+            authInfo.refreshToken = json[kOAuthRefreshToken].string!
+            try! authInfo.updateInSecureStore()
+            authInfo.clientId = ""
+            authInfo.secret = ""
+            if let callback = success {
+              callback()
+            }
+          }, failure: { error in
+            authInfo.clientId = ""
+            authInfo.secret = ""
+            if let callback = failure {
+              callback(error)
+            }
+          })
+        }
       }
     }
   }
@@ -103,7 +113,7 @@ extension LctvApi {
     ]
   }
 
-  /*
+  /* -- For debugging only
   public func logAuthInfo() {
     print("AuthInfo:")
     print("=========")

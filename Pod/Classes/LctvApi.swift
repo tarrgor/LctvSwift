@@ -17,44 +17,56 @@ public class LctvApi {
   
   var _authInfo: LctvAuthInfo? = nil
   
-  public init() throws {
-    let authInfo = LctvAuthInfo()
-    guard let newAuthInfo = authInfo.readFromSecureStore() else {
-      throw LctvInitError.ApiInitializationError
-    }
-    guard let clientId = newAuthInfo.data?["clientId"] as? String else {
-      throw LctvInitError.ApiInitializationError
-    }
-    guard let secret = newAuthInfo.data?["secret"] as? String else {
-      throw LctvInitError.ApiInitializationError
-    }
-    guard let accessToken = newAuthInfo.data?["accessToken"] as? String else {
-      throw LctvInitError.ApiInitializationError
-    }
-    guard let refreshToken = newAuthInfo.data?["refreshToken"] as? String else {
-      throw LctvInitError.ApiInitializationError
-    }
-    authInfo.clientId = clientId
-    authInfo.secret = secret
-    authInfo.accessToken = accessToken
-    authInfo.refreshToken = refreshToken
+  init(authInfo: LctvAuthInfo) {
     _authInfo = authInfo
-  }
-  
-  public init(clientId: String, secret: String) throws {
-    _authInfo = LctvAuthInfo()
-    _authInfo?.clientId = clientId
-    _authInfo?.secret = secret
-    do {
-      let _ = try? _authInfo?.deleteFromSecureStore()
-      try _authInfo?.createInSecureStore()
-    } catch {
-      _authInfo = nil
-      throw LctvInitError.ApiInitializationError
-    }
   }
   
   deinit {
     serverUtil.stopServer()
   }
+  
+  public static func initializeWithConfig(config: LctvConfig) throws -> LctvApi {
+    
+    let authInfo = LctvAuthInfo()
+    if config.overwrite {
+      do {
+        try authInfo.deleteFromSecureStore()
+      }
+    }
+    
+    if let loadedAuthInfo = authInfo.readFromSecureStore() {
+      authInfo.accessToken = (loadedAuthInfo.data?["accessToken"] as? String) ?? ""
+      authInfo.refreshToken = (loadedAuthInfo.data?["refreshToken"] as? String) ?? ""
+      //let grantType = (loadedAuthInfo.data?["grantType"] as? String) ?? "A"
+      authInfo.grantType = .AuthorizationCode // TODO: Implicit
+      if !authInfo.hasAccessToken() {
+        authInfo.clientId = (loadedAuthInfo.data?["clientId"] as? String) ?? ""
+        authInfo.secret = (loadedAuthInfo.data?["secret"] as? String) ?? ""
+      }
+    } else {
+      if let clientId = config.clientId, secret = config.clientSecret {
+        authInfo.clientId = clientId
+        authInfo.secret = secret
+        authInfo.grantType = config.grantType
+        do {
+          try authInfo.createInSecureStore()
+        } catch {
+          throw LctvInitError.ApiInitializationError(message: "Could not store authInfo in keychain.")
+        }
+      } else {
+        throw LctvInitError.ApiInitializationError(message: "Need to specify clientId and secret if api is initialized for the first time.")
+      }
+    }
+    
+    return LctvApi(authInfo: authInfo)
+  }
+  
 }
+
+
+
+
+
+
+
+

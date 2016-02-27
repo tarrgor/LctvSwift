@@ -14,7 +14,7 @@
             buildForArchiving = "YES">
             <BuildableReference
                BuildableIdentifier = 'primary'
-               BlueprintIdentifier = 'E6A037A5DF69F99476CADC85'
+               BlueprintIdentifier = 'E8682DB2725768F2587B4382'
                BlueprintName = 'LctvSwift'
                ReferencedContainer = 'container:Pods.xcodeproj'
                BuildableName = 'LctvSwift.framework'>

@@ -21,14 +21,13 @@ class ViewController: UIViewController {
 
   func initApi() {
     do {
-      try api = LctvApi()
+      var config = LctvConfig()
+      config.clientId = clientId
+      config.clientSecret = secret
+      try api = LctvApi.initializeWithConfig(config)
     } catch {
-      do {
-        try api = LctvApi(clientId: clientId, secret: secret)
-      } catch {
-        print("Could not initialize. Aborting.")
-        abort()
-      }
+      print("Could not initialize. Aborting.")
+      abort()
     }
   }
   

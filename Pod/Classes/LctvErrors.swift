@@ -10,7 +10,7 @@ import Foundation
 
 public enum LctvInitError : ErrorType {
   
-  case ApiInitializationError
+  case ApiInitializationError(message: String)
   case AuthorizationInfoNotInitializedError
   case StartLocalServerError
   

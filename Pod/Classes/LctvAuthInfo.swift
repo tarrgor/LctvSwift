@@ -16,6 +16,7 @@ class LctvAuthInfo : CreateableSecureStorable, GenericPasswordSecureStorable,
   var secret: String
   var accessToken: String
   var refreshToken: String
+  var grantType: LctvGrantType
   
   var account: String { return "lctv-swift" }
   let service = "lctv.swift.LivecodingTV"
@@ -24,7 +25,8 @@ class LctvAuthInfo : CreateableSecureStorable, GenericPasswordSecureStorable,
       "clientId": clientId,
       "secret": secret,
       "accessToken": accessToken,
-      "refreshToken": refreshToken
+      "refreshToken": refreshToken,
+      "grantType": grantType == .AuthorizationCode ? "A" : "I"
     ]
   }
   
@@ -33,9 +35,10 @@ class LctvAuthInfo : CreateableSecureStorable, GenericPasswordSecureStorable,
     secret = ""
     accessToken = ""
     refreshToken = ""
+    grantType = .AuthorizationCode
   }
   
   func hasAccessToken() -> Bool {
-    return accessToken.characters.count > 0
+    return !accessToken.isEmpty
   }
 }
