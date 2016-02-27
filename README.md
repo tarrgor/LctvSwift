@@ -5,6 +5,21 @@
 [![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://cocoapods.org/pods/LctvSwift)
 [![Platform](https://img.shields.io/badge/platform-iOS-blue.svg?style=flat)](http://cocoapods.org/pods/LctvSwift)
 
+
+## Requirements
+
+To use LctvSwift you need to register an app on Livecoding. Visit the Livecoding
+homepage to get information on how to do so.
+
+When registering choose the following configuration for your app:
+
+`Client Type:` public
+
+`Authorization Grant Type:` authorization-code
+
+`Redirect Uris:` http://localhost:8080/oauth-callback
+ 
+
 ## Installation
 
 LctvSwift is available through [CocoaPods](http://cocoapods.org). To install
@@ -190,7 +205,7 @@ api.getCodingCategories(success: {
 ```
 
 The `result` parameter which gets passed into `success` is of type 
-`LctvResultContainer<LctvCodingCategory>`. It's `result` property contains an
+`LctvResultContainer<LctvCodingCategory>`. It's `results` property contains an
 array with a number of `LctvCodingCategory` instances. The number of results for
 a page can be configured by setting the api's `pageSize` property:
 
