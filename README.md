@@ -69,8 +69,8 @@ The `LctvConfig` class has two more properties:
 
 `overwrite`: 
 
-This initialization will overwrite any existing client information in 
-the device's keychain. If set to `true` you have to provide clientId and secret 
+If set to `true`, this initialization will overwrite any existing client information in 
+the device's keychain. In this case you have to provide clientId and secret 
 again in the config. Defaults to `false` and should only be set to `true` for 
 debugging purposes.
 
