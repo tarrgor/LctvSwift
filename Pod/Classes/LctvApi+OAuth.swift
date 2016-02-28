@@ -12,6 +12,16 @@ import SwiftyJSON
 
 extension LctvApi {
   
+  /**
+   Handles oAuth2 authorization with livecoding.tv. If an `oAuthUrlHandler` is
+   configured, it will be used to handle the authorization process (e.g. opening
+   a web view, so the user can login and authorize the app).
+   
+   - parameter scope: Specifies the needed permissions within a space separated string. For a list
+   of available permissions visit livecoding.tv homepage.
+   
+   - throws: `LctvInitError`
+  */
   public func authorize(scope scope: String = "read") throws {
     guard let authInfo = _authInfo else {
       throw LctvInitError.AuthorizationInfoNotInitializedError
@@ -50,6 +60,15 @@ extension LctvApi {
     })
   }
 
+  /**
+   Refreshes the access token if it is expired. Works only with grantType = AuthorizationCode.
+   
+   If successful, a new access token is stored in the keychain for further access of livecoding.tv
+   resources.
+   
+   - parameter success: Handler for successful refresh of the token.
+   - parameter failure: Handler for error cases.
+  */
   public func refreshToken(success: (() -> ())? = nil, failure: ((NSError) -> ())? = nil) {
     if let authInfo = _authInfo, hasToken = _authInfo?.hasAccessToken() {
       if hasToken {
@@ -92,11 +111,21 @@ extension LctvApi {
     }
   }
   
+  /**
+   Delete any existing authorization info from the keychain. The LctvApi instance has to be
+   re-initialized afterwards.
+  */
   public func deleteAuthInfo() {
     let _ = try? _authInfo?.deleteFromSecureStore()
     _authInfo = nil
   }
   
+  /**
+   Check if an access token is already in place. This method can be used to determine, 
+   if a call to `authorize()` is necessary or not.
+   
+   - returns: `true` if an access token is stored in the keychain. `false` otherwise.
+  */
   public func hasAccessToken() -> Bool {
     let result: Bool? = _authInfo?.hasAccessToken()
     return result ?? false

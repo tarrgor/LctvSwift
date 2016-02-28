@@ -9,7 +9,7 @@
 import UIKit
 import OAuthSwift
 
-public class LctvAuthViewController : OAuthWebViewController {
+public final class LctvAuthViewController : OAuthWebViewController {
     
   var webView: UIWebView = UIWebView()
   var targetURL: NSURL = NSURL()
