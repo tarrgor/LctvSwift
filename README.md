@@ -6,6 +6,12 @@
 [![Platform](https://img.shields.io/badge/platform-iOS-blue.svg?style=flat)](http://cocoapods.org/pods/LctvSwift)
 
 
+## Still under development
+
+Please note: This library is still under development. There will be bugs or missing
+features and also thigs may change in future versions. Be aware of that before
+using it.
+
 ## Requirements
 
 To use LctvSwift you need to register an app on Livecoding. Visit the Livecoding
