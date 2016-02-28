@@ -1,6 +1,6 @@
 PODS:
-  - Alamofire (3.2.0)
-  - LctvSwift (0.6.2):
+  - Alamofire (3.2.1)
+  - LctvSwift (0.6.3):
     - Alamofire (~> 3.0)
     - Locksmith (~> 2.0.8)
     - OAuthSwift (~> 0.5.0)
@@ -23,8 +23,8 @@ EXTERNAL SOURCES:
     :path: ../
 
 SPEC CHECKSUMS:
-  Alamofire: 4da478599fccddff361205c8929333d7fe18dceb
-  LctvSwift: a06d000d2874e8e27c0a56fcf50e4a2d41484fcb
+  Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
+  LctvSwift: 69f752ab30aa620d534495315d359cceb284ce27
   Locksmith: a8ed41ac4c06506ea8cb199d8ec8a8d3d108eb2a
   Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
   OAuthSwift: d63f7f329f49787319a7e35974c18b10865fe636
