@@ -1,10 +1,10 @@
 # LctvSwift
 
 [![CI Status](http://img.shields.io/travis/tarrgor/LctvSwift.svg?style=flat)](https://travis-ci.org/tarrgor/LctvSwift)
-[![Version](https://img.shields.io/badge/pod-0.6.2-blue.svg)](http://cocoapods.org/pods/LctvSwift)
-[![License](http://img.shields.io/badge/license-MIT-blue.svg?style=flat)](http://cocoapods.org/pods/LctvSwift)
-[![Platform](https://img.shields.io/badge/platform-iOS-blue.svg?style=flat)](http://cocoapods.org/pods/LctvSwift)
-
+[![CocoaPods](https://img.shields.io/cocoapods/v/LctvSwift.svg)](http://cocoapods.org/pods/LctvSwift)
+[![CocoaPods](https://img.shields.io/cocoapods/l/LctvSwift.svg)](http://cocoapods.org/pods/LctvSwift)
+[![CocoaPods](https://img.shields.io/cocoapods/p/LctvSwift.svg)](http://cocoapods.org/pods/LctvSwift)
+[![CocoaPods](https://img.shields.io/cocoapods/metrics/doc-percent/LctvSwift.svg)](http://cocoapods.org/pods/LctvSwift)
 
 ## Still under development
 
