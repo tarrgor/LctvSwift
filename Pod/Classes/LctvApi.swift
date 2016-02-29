@@ -8,6 +8,7 @@
 
 import Foundation
 import OAuthSwift
+import Locksmith
 
 /**
  Main class used for the communication between your client (app) and 
@@ -38,30 +39,16 @@ public class LctvApi {
   var _authInfo: LctvAuthInfo? = nil
   
   /**
-    Initializer (internal). Use the static `initializeWithConfig` method for
-    initialization.
-  */
-  init(authInfo: LctvAuthInfo) {
-    _authInfo = authInfo
-  }
-  
-  /// Deinitializer. Stops any running http servers.
-  deinit {
-    serverUtil.stopServer()
-  }
-  
-  /**
-   Main initialization method for `LctvApi`.
+   Main initializer for `LctvApi`.
    
    - parameter config: A valid `LctvConfig` instance with basic configuraton info.
    
    - returns: The instance of `LctvApi` which should be stored in an accessible manner, so that
-   each part of the app is able to access it. 
+   each part of the app is able to access it.
    
    - throws: `LctvInitError`
-  */
-  public static func initializeWithConfig(config: LctvConfig) throws -> LctvApi {
-    
+   */
+  public init (config: LctvConfig) throws {
     let authInfo = LctvAuthInfo()
     if config.overwrite {
       do {
@@ -69,7 +56,21 @@ public class LctvApi {
       }
     }
     
-    if let loadedAuthInfo = authInfo.readFromSecureStore() {
+    if !fillAuthInfoFromSecureStore(authInfo) {
+      if try !fillAuthInfoFromConfig(authInfo, config: config) {
+        throw LctvInitError.ApiInitializationError(message: "Need to specify clientId and secret if api is initialized for the first time.")
+      }
+    }
+    _authInfo = authInfo
+  }
+  
+  /// Deinitializer. Stops any running http servers.
+  deinit {
+    serverUtil.stopServer()
+  }
+    
+  func fillAuthInfoFromSecureStore(authInfo: LctvAuthInfo) -> Bool {
+    if let loadedAuthInfo = loadAuthInfoFromKeychain(authInfo) {
       authInfo.accessToken = (loadedAuthInfo.data?["accessToken"] as? String) ?? ""
       authInfo.refreshToken = (loadedAuthInfo.data?["refreshToken"] as? String) ?? ""
       //let grantType = (loadedAuthInfo.data?["grantType"] as? String) ?? "A"
@@ -78,24 +79,39 @@ public class LctvApi {
         authInfo.clientId = (loadedAuthInfo.data?["clientId"] as? String) ?? ""
         authInfo.secret = (loadedAuthInfo.data?["secret"] as? String) ?? ""
       }
-    } else {
-      if let clientId = config.clientId, secret = config.clientSecret {
-        authInfo.clientId = clientId
-        authInfo.secret = secret
-        authInfo.grantType = config.grantType
-        do {
-          try authInfo.createInSecureStore()
-        } catch {
-          throw LctvInitError.ApiInitializationError(message: "Could not store authInfo in keychain.")
-        }
-      } else {
-        throw LctvInitError.ApiInitializationError(message: "Need to specify clientId and secret if api is initialized for the first time.")
-      }
+      return true
     }
-    
-    return LctvApi(authInfo: authInfo)
+    return false
   }
   
+  func fillAuthInfoFromConfig(authInfo: LctvAuthInfo, config: LctvConfig) throws -> Bool {
+    if let clientId = config.clientId, secret = config.clientSecret {
+      if clientId.isEmpty || secret.isEmpty {
+        return false
+      }
+      
+      authInfo.clientId = clientId
+      authInfo.secret = secret
+      authInfo.grantType = config.grantType
+
+      try storeAuthInfoInKeychain(authInfo)
+      
+      return true
+    }
+    return false
+  }
+  
+  func storeAuthInfoInKeychain(authInfo: LctvAuthInfo) throws {
+    do {
+      try authInfo.createInSecureStore()
+    } catch {
+      throw LctvInitError.ApiInitializationError(message: "Could not store authInfo in keychain.")
+    }
+  }
+  
+  func loadAuthInfoFromKeychain(authInfo: LctvAuthInfo) -> GenericPasswordSecureStorableResultType? {
+    return authInfo.readFromSecureStore()
+  }
 }
 
 
