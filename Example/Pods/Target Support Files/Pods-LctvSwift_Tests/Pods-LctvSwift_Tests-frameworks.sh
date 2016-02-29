@@ -91,6 +91,7 @@ if [[ "$CONFIGURATION" == "Debug" ]]; then
   install_framework "Pods-LctvSwift_Tests/Swifter.framework"
   install_framework "Pods-LctvSwift_Tests/SwiftyJSON.framework"
   install_framework "Pods-LctvSwift_Tests/Nimble.framework"
+  install_framework "Pods-LctvSwift_Tests/OHHTTPStubs.framework"
   install_framework "Pods-LctvSwift_Tests/Quick.framework"
 fi
 if [[ "$CONFIGURATION" == "Release" ]]; then
@@ -101,5 +102,6 @@ if [[ "$CONFIGURATION" == "Release" ]]; then
   install_framework "Pods-LctvSwift_Tests/Swifter.framework"
   install_framework "Pods-LctvSwift_Tests/SwiftyJSON.framework"
   install_framework "Pods-LctvSwift_Tests/Nimble.framework"
+  install_framework "Pods-LctvSwift_Tests/OHHTTPStubs.framework"
   install_framework "Pods-LctvSwift_Tests/Quick.framework"
 fi
