@@ -22,6 +22,8 @@ PODS:
   - OHHTTPStubs/NSURLSession (4.7.1):
     - OHHTTPStubs/Core
   - OHHTTPStubs/OHPathHelpers (4.7.1)
+  - OHHTTPStubs/Swift (4.7.1):
+    - OHHTTPStubs/Core
   - Quick (0.8.0)
   - Swifter (1.1.3)
   - SwiftyJSON (2.3.2)
@@ -30,6 +32,7 @@ DEPENDENCIES:
   - LctvSwift (from `../`)
   - Nimble (= 3.0.0)
   - OHHTTPStubs
+  - OHHTTPStubs/Swift
   - Quick (~> 0.8.0)
 
 EXTERNAL SOURCES:
