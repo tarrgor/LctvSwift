@@ -64,7 +64,7 @@ For initialization of the api you can write a function similar to this one:
       var config = LctvConfig()
       config.clientId = "clientId"
       config.clientSecret = "secret"
-      try api = LctvApi.initializeWithConfig(config)
+      try api = LctvApi(config: config)
     } catch {
       print("Could not initialize. Aborting.")
       abort()
@@ -72,7 +72,7 @@ For initialization of the api you can write a function similar to this one:
   }
 ```
 
-The static `initializeWithConfig` function is the way to get an instance of `LctvApi`,
+The `init(config: LctvConfig)` function is the way to get an instance of `LctvApi`,
 which is necessary to communicate with Livecoding. The function takes a `LctvConfig` 
 instance as its parameter, which contains some basic information on how you want
 to setup the api.
