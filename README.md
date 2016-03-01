@@ -14,6 +14,8 @@ using it.
 
 ## Requirements
 
+### Registration of your app
+
 To use LctvSwift you need to register an app on Livecoding. Visit the Livecoding
 homepage to get information on how to do so.
 
@@ -24,7 +26,20 @@ When registering choose the following configuration for your app:
 `Authorization Grant Type:` authorization-code
 
 `Redirect Uris:` http://localhost:8080/oauth-callback
+
+### Settings in your XCode project
+
+Within your Info.plist file add the following setting:
+
+`AppTransportSecuritySettings`
  
+ This is a Dictionary-Type entry. Add the following sub-entry to it:
+ 
+ `Allow Arbitrary Loads = YES`
+
+This disables forced https-only connectivity. Within the authorization process
+the library starts an internal http-server, that's what this setting is necessary 
+for. May not be necessary in future versions, if the local server supports https.
 
 ## Installation
 
