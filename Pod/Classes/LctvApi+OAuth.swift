@@ -30,11 +30,13 @@ extension LctvApi {
     let oauthswift = OAuth2Swift(
       consumerKey:    authInfo.clientId,
       consumerSecret: authInfo.secret,
-      authorizeUrl:   kUrlLctvAuthorize,
-      accessTokenUrl: kUrlLctvToken,
+      authorizeUrl:   ApiUrl.urlLctvAuthorize,
+      accessTokenUrl: ApiUrl.urlLctvToken,
       responseType:   kOAuthResponseTypeCode
     )
     let state: String = generateStateWithLength(20) as String
+    
+    oauthswift.allowMissingStateCheck = mocking
     
     try serverUtil.startServer()
     
@@ -42,7 +44,7 @@ extension LctvApi {
       oauthswift.authorize_url_handler = handler
     }
     
-    oauthswift.authorizeWithCallbackURL( NSURL(string: kUrlOAuthCallback)!,
+    oauthswift.authorizeWithCallbackURL( NSURL(string: ApiUrl.urlCallback)!,
       scope: scope,
       state: state, success: {
         credential, response, parameters in
@@ -54,9 +56,14 @@ extension LctvApi {
         self._authInfo?.clientId = ""
         self._authInfo?.secret = ""
         self.serverUtil.stopServer()
+        if let callback = self.onAuthorizationSuccess {
+          callback()
+        }
       }, failure: { error in
-        print(error.localizedDescription)
         self.serverUtil.stopServer()
+        if let callback = self.onAuthorizationFailure {
+          callback(error.localizedDescription)
+        }
     })
   }
 
@@ -131,6 +138,11 @@ extension LctvApi {
     return result ?? false
   }
   
+  /**
+   Retrieve a set of http headers including the authorization information
+
+   - returns: A dictionary with http header information needed to authorize against livecoding.
+  */
   func httpHeaders() -> [String:String] {
     guard let authInfo = _authInfo else { return [:] }
     if !authInfo.hasAccessToken() {

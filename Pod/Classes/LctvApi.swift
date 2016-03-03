@@ -10,6 +10,9 @@ import Foundation
 import OAuthSwift
 import Locksmith
 
+public typealias AuthSuccessHandler = () -> ()
+public typealias AuthFailureHandler = (String) -> ()
+
 /**
  Main class used for the communication between your client (app) and 
  livecoding.tv. 
@@ -19,6 +22,15 @@ import Locksmith
 public class LctvApi {
   /// Manager for internal http server
   let serverUtil = HttpServerUtil()
+  
+  /// API instance is used in Mocking-Mode for testing
+  var mocking = false
+  
+  /// Handler which is called after successfully processing the authorization screen
+  public var onAuthorizationSuccess: AuthSuccessHandler? = nil
+  
+  /// Handler for errors during the authorization process
+  public var onAuthorizationFailure: AuthFailureHandler? = nil
   
   /**
    URL handler used to process the oAuth2 authorization.

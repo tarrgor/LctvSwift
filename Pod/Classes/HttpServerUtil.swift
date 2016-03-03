@@ -28,7 +28,7 @@ class HttpServerUtil {
     do {
       try server.start()
     } catch {
-      throw LctvInitError.StartLocalServerError
+      throw LctvInitError.StartLocalServerError(message: "Could not start local server")
     }
   }
   

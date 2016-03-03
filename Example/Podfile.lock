@@ -1,6 +1,6 @@
 PODS:
   - Alamofire (3.2.1)
-  - LctvSwift (0.6.4):
+  - LctvSwift (0.6.5):
     - Alamofire (~> 3.0)
     - Locksmith (~> 2.0.8)
     - OAuthSwift (~> 0.5.0)
@@ -9,21 +9,6 @@ PODS:
   - Locksmith (2.0.8)
   - Nimble (3.0.0)
   - OAuthSwift (0.5.1)
-  - OHHTTPStubs (4.7.1):
-    - OHHTTPStubs/Default (= 4.7.1)
-  - OHHTTPStubs/Core (4.7.1)
-  - OHHTTPStubs/Default (4.7.1):
-    - OHHTTPStubs/Core
-    - OHHTTPStubs/JSON
-    - OHHTTPStubs/NSURLSession
-    - OHHTTPStubs/OHPathHelpers
-  - OHHTTPStubs/JSON (4.7.1):
-    - OHHTTPStubs/Core
-  - OHHTTPStubs/NSURLSession (4.7.1):
-    - OHHTTPStubs/Core
-  - OHHTTPStubs/OHPathHelpers (4.7.1)
-  - OHHTTPStubs/Swift (4.7.1):
-    - OHHTTPStubs/Core
   - Quick (0.8.0)
   - Swifter (1.1.3)
   - SwiftyJSON (2.3.2)
@@ -31,8 +16,6 @@ PODS:
 DEPENDENCIES:
   - LctvSwift (from `../`)
   - Nimble (= 3.0.0)
-  - OHHTTPStubs
-  - OHHTTPStubs/Swift
   - Quick (~> 0.8.0)
 
 EXTERNAL SOURCES:
@@ -41,11 +24,10 @@ EXTERNAL SOURCES:
 
 SPEC CHECKSUMS:
   Alamofire: f11d8624a05f5d39e0c99309b3e600a3ba64298a
-  LctvSwift: e1852f65c37f0ab6fae6ae69100f299703d7fbad
+  LctvSwift: 1bf482ea6c0292505f9b945249678b836abe3da7
   Locksmith: a8ed41ac4c06506ea8cb199d8ec8a8d3d108eb2a
   Nimble: 4c353d43735b38b545cbb4cb91504588eb5de926
   OAuthSwift: d63f7f329f49787319a7e35974c18b10865fe636
-  OHHTTPStubs: f7d1604d04d37d055460c0ef9af01bb249ded0fa
   Quick: 563d0f6ec5f72e394645adb377708639b7dd38ab
   Swifter: 52433dd6616050450a69513ef5d1452a2d089096
   SwiftyJSON: 04ccea08915aa0109039157c7974cf0298da292a

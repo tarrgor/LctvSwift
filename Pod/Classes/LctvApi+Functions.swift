@@ -12,7 +12,7 @@ import SwiftyJSON
 extension LctvApi {
   
   public func getCodingCategories(page page: Int? = 0, success: (LctvResultContainer<LctvCodingCategory>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlCodingCategories, page: page ?? 0, success: {
+    get(ApiUrl.CodingCategories.url, page: page ?? 0, success: {
       json in
       let result = LctvResultContainer<LctvCodingCategory>(json: json)
       success(result)

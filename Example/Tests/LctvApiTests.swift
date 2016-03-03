@@ -14,6 +14,7 @@ import Locksmith
 class LctvApiSpec : QuickSpec {
   
   var api: LctvApi?
+  var server: MockServer?
 
   class SecureResult : GenericPasswordSecureStorableResultType {
     var data: [String:AnyObject]? = [
@@ -33,7 +34,7 @@ class LctvApiSpec : QuickSpec {
     ]
   }
 
-  class Fake_LctvApi_First : LctvApi {
+  class Fake_LctvApi_Empty : LctvApi {
     override func storeAuthInfoInKeychain(authInfo: LctvAuthInfo) throws {
       
     }
@@ -43,19 +44,32 @@ class LctvApiSpec : QuickSpec {
     }
   }
 
-  class Fake_LctvApi_Second : LctvApi {
+  class Fake_LctvApi_WithSecret : LctvApi {
     override func loadAuthInfoFromKeychain(authInfo: LctvAuthInfo) -> GenericPasswordSecureStorableResultType? {
       return SecureResult()
     }
   }
 
-  class Fake_LctvApi_Third : LctvApi {
+  class Fake_LctvApi_WithToken : LctvApi {
     override func loadAuthInfoFromKeychain(authInfo: LctvAuthInfo) -> GenericPasswordSecureStorableResultType? {
       return SecureResultWithTokens()
     }
   }
   
   override func spec() {
+    beforeSuite() {
+      ApiUrl.apiBaseUrl = "http://localhost:9090/mocks/"
+      ApiUrl.urlLctvAuthorize = "http://localhost:9090/mocks/authorize"
+      ApiUrl.urlLctvToken = "http://localhost:9090/mocks/token"
+      
+      self.server = MockServer()
+      self.server?.startServer()
+    }
+    
+    afterSuite() {
+      self.server?.stopServer()
+    }
+    
     describe("initialization of the api instance") {
       
       afterEach() {
@@ -66,7 +80,7 @@ class LctvApiSpec : QuickSpec {
         beforeEach() {
           let config = LctvConfig(clientId: "clientId", clientSecret: "secret")
           do {
-            try self.api = Fake_LctvApi_First(config: config)
+            try self.api = Fake_LctvApi_Empty(config: config)
           } catch {
             fail("No exception expected.")
           }
@@ -88,12 +102,12 @@ class LctvApiSpec : QuickSpec {
       context("first initialization without clientId") {
         it("throws an error when client id is empty") {
           let config = LctvConfig(clientId: "", clientSecret: "secret")
-          expect { try self.api = Fake_LctvApi_First(config: config) }.to(throwError(errorType: LctvInitError.self))
+          expect { try self.api = Fake_LctvApi_Empty(config: config) }.to(throwError(errorType: LctvInitError.self))
         }
 
         it("throws an error when secret id is empty") {
           let config = LctvConfig(clientId: "clientId", clientSecret: "")
-          expect { try self.api = Fake_LctvApi_First(config: config) }.to(throwError(errorType: LctvInitError.self))
+          expect { try self.api = Fake_LctvApi_Empty(config: config) }.to(throwError(errorType: LctvInitError.self))
         }
       }
       
@@ -101,7 +115,7 @@ class LctvApiSpec : QuickSpec {
         beforeEach() {
           let config = LctvConfig()
           do {
-            try self.api = Fake_LctvApi_Second(config: config)
+            try self.api = Fake_LctvApi_WithSecret(config: config)
           } catch {
             fail("No exception expected.")
           }
@@ -124,7 +138,7 @@ class LctvApiSpec : QuickSpec {
         beforeEach() {
           let config = LctvConfig()
           do {
-            try self.api = Fake_LctvApi_Third(config: config)
+            try self.api = Fake_LctvApi_WithToken(config: config)
           } catch {
             fail("No exception expected.")
           }
@@ -140,6 +154,60 @@ class LctvApiSpec : QuickSpec {
         
         it("clientId has no value") {
           expect(self.api?._authInfo?.clientId).to(beEmpty())
+        }
+      }
+    }
+    
+    describe("authorization") {
+      
+      afterEach() {
+        self.api = nil
+      }
+      
+      context("authorization without authInfo") {
+        beforeEach() {
+          let config = LctvConfig()
+          do {
+            try self.api = Fake_LctvApi_WithToken(config: config)
+            self.api?._authInfo = nil
+          } catch {
+            fail("No exception expected.")
+          }
+        }
+        
+        it("throws an error") {
+          expect{ try self.api?.authorize() }.to(throwError(errorType: LctvInitError.self))
+        }
+      }
+      
+      context("authorization with normal authInfo in place") {
+        beforeEach() {
+          let config = LctvConfig()
+          do {
+            try self.api = Fake_LctvApi_WithSecret(config: config)
+          } catch {
+            fail("No exception expected.")
+          }
+          self.api?.oAuthUrlHandler = self.server
+          self.api?.mocking = true
+
+          do {
+            try self.api?.authorize()
+          } catch {
+            fail("Unexpected error")
+          }
+        }
+        
+        it("has an access token after successful authorization") {
+          expect(self.api?._authInfo?.accessToken).toEventuallyNot(beEmpty())
+        }
+        
+        it("has the correct access token") {
+          expect(self.api?._authInfo?.accessToken).toEventually(equal("accessToken"))
+        }
+        
+        it("has the correct refresh token") {
+          expect(self.api?._authInfo?.refreshToken).toEventually(equal("refreshToken"))
         }
       }
     }

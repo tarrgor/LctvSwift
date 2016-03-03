@@ -12,6 +12,6 @@ public enum LctvInitError : ErrorType {
   
   case ApiInitializationError(message: String)
   case AuthorizationInfoNotInitializedError
-  case StartLocalServerError
+  case StartLocalServerError(message: String)
   
 }
