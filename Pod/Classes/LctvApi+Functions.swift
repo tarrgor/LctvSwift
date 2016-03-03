@@ -23,7 +23,7 @@ extension LctvApi {
   }
   
   public func getCodingCategoryByName(name: String, success: (LctvCodingCategory) -> (), failure: (String, JSON?) -> ()) {
-    let url = kUrlCodingCategories + "\(name)"
+    let url = ApiUrl.CodingCategories.url + "\(name)"
     get(url, success: {
       json in
       let result = LctvCodingCategory(json: json)
@@ -35,7 +35,7 @@ extension LctvApi {
   }
   
   public func getLivestreams(page page: Int? = 0, success: (LctvResultContainer<LctvLivestream>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlLivestreams, page: page ?? 0, success: {
+    get(ApiUrl.Livestreams.url, page: page ?? 0, success: {
       json in
       let result = LctvResultContainer<LctvLivestream>(json: json)
       success(result)
@@ -46,7 +46,7 @@ extension LctvApi {
   }
   
   public func getLivestreamsOnAir(page page: Int? = 0, success: (LctvResultContainer<LctvLivestream>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlLivestreamsOnAir, page: page ?? 0, success: {
+    get(ApiUrl.LivestreamsOnAir.url, page: page ?? 0, success: {
       json in
       let result = LctvResultContainer<LctvLivestream>(json: json)
       success(result)
@@ -57,7 +57,7 @@ extension LctvApi {
   }
   
   public func getLivestreamByUserSlug(userSlug: String, success: (LctvLivestream) -> (), failure: (String, JSON?) -> ()) {
-    let url = kUrlLivestreams + "\(userSlug)"
+    let url = ApiUrl.Livestreams.url + "\(userSlug)"
     get(url, success: {
       json in
       let result = LctvLivestream(json: json)
@@ -69,7 +69,7 @@ extension LctvApi {
   }
 
   public func getLanguages(page page: Int? = 0, success: (LctvResultContainer<LctvLanguage>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlLanguages, page: page ?? 0, success: {
+    get(ApiUrl.Languages.url, page: page ?? 0, success: {
       json in
       let result = LctvResultContainer<LctvLanguage>(json: json)
       success(result)
@@ -80,7 +80,7 @@ extension LctvApi {
   }
   
   public func getLanguageByName(name: String, success: (LctvLanguage) -> (), failure: (String, JSON?) -> ()) {
-    let url = kUrlLanguages + "\(name)"
+    let url = ApiUrl.Languages.url + "\(name)"
     get(url, success: {
       json in
       let result = LctvLanguage(json: json)
@@ -92,7 +92,7 @@ extension LctvApi {
   }
   
   public func getCurrentUser(success success: (LctvUser) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlCurrentUser, success: {
+    get(ApiUrl.CurrentUser.url, success: {
       json in
       let result = LctvUser(json: json)
       success(result)
@@ -103,7 +103,7 @@ extension LctvApi {
   }
   
   public func getCurrentUserFollowers(success success: (LctvArrayContainer<LctvUser>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlFollowers, success: {
+    get(ApiUrl.Followers.url, success: {
       json in
       let result = LctvArrayContainer<LctvUser>(json: json)
       success(result)
@@ -114,7 +114,7 @@ extension LctvApi {
   }
   
   public func getCurrentUserFollows(success success: (LctvArrayContainer<LctvUser>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlFollows, success: {
+    get(ApiUrl.Follows.url, success: {
       json in
       let result = LctvArrayContainer<LctvUser>(json: json)
       success(result)
@@ -125,7 +125,7 @@ extension LctvApi {
   }
   
   public func getUserChatAccount(success success: (LctvXmppAccount) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlChatAccount, success: {
+    get(ApiUrl.ChatAccount.url, success: {
       json in
       let result = LctvXmppAccount(json: json)
       success(result)
@@ -136,7 +136,7 @@ extension LctvApi {
   }
   
   public func getViewingKey(success success: (LctvUser) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlViewingKey, success: {
+    get(ApiUrl.ViewingKey.url, success: {
       json in
       let result = LctvUser(json: json)
       success(result)
@@ -147,7 +147,7 @@ extension LctvApi {
   }
   
   public func getUserVideos(page page: Int? = 0, success: (LctvResultContainer<LctvVideo>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlUserVideos, page: page ?? 0, success: {
+    get(ApiUrl.UserVideos.url, page: page ?? 0, success: {
       json in
       let result = LctvResultContainer<LctvVideo>(json: json)
       success(result)
@@ -158,7 +158,7 @@ extension LctvApi {
   }
   
   public func getUserLatestVideos(page page: Int? = 0, success: (LctvResultContainer<LctvVideo>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlUserLatestVideos, page: page ?? 0, success: {
+    get(ApiUrl.UserLatestVideos.url, page: page ?? 0, success: {
       json in
       let result = LctvResultContainer<LctvVideo>(json: json)
       success(result)
@@ -169,7 +169,7 @@ extension LctvApi {
   }
   
   public func getUserChannel(page page: Int? = 0, success: (LctvResultContainer<LctvUserChannel>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlUserChannel, page: page ?? 0, success: {
+    get(ApiUrl.UserChannel.url, page: page ?? 0, success: {
       json in
       let result = LctvResultContainer<LctvUserChannel>(json: json)
       success(result)
@@ -180,7 +180,7 @@ extension LctvApi {
   }
 
   public func getUserChannelOnAir(page page: Int? = 0, success: (LctvResultContainer<LctvUserChannel>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlUserChannelOnAir, page: page ?? 0, success: {
+    get(ApiUrl.UserChannelOnAir.url, page: page ?? 0, success: {
       json in
       let result = LctvResultContainer<LctvUserChannel>(json: json)
       success(result)
@@ -191,7 +191,7 @@ extension LctvApi {
   }
   
   public func getUserProfileBySlug(slug: String, success: (LctvUser) -> (), failure: (String, JSON?) -> ()) {
-    let url = "\(kUrlUserProfile)\(slug)"
+    let url = "\(ApiUrl.UserProfile.url)\(slug)"
     get(url, success: {
       json in
       let result = LctvUser(json: json)
@@ -203,7 +203,7 @@ extension LctvApi {
   }
 
   public func getScheduledBroadcasts(page page: Int? = 0, success: (LctvResultContainer<LctvScheduledBroadcast>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlScheduledBroadcasts, page: page ?? 0, success: {
+    get(ApiUrl.ScheduledBroadcasts.url, page: page ?? 0, success: {
       json in
       let result = LctvResultContainer<LctvScheduledBroadcast>(json: json)
       success(result)
@@ -214,7 +214,7 @@ extension LctvApi {
   }
   
   public func getScheduledBroadcastById(id: Int, success: (LctvScheduledBroadcast) -> (), failure: (String, JSON?) -> ()) {
-    let url = "\(kUrlScheduledBroadcasts)\(id)"
+    let url = "\(ApiUrl.ScheduledBroadcasts.url)\(id)"
     get(url, success: {
       json in
       let result = LctvScheduledBroadcast(json: json)
@@ -226,7 +226,7 @@ extension LctvApi {
   }
   
   public func getVideos(page page: Int? = 0, success: (LctvResultContainer<LctvVideo>) -> (), failure: (String, JSON?) -> ()) {
-    get(kUrlVideos, page: page ?? 0, success: {
+    get(ApiUrl.Videos.url, page: page ?? 0, success: {
       json in
       let result = LctvResultContainer<LctvVideo>(json: json)
       success(result)
@@ -237,7 +237,7 @@ extension LctvApi {
   }
   
   public func getVideoBySlug(slug: String, success: (LctvVideo) -> (), failure: (String, JSON?) -> ()) {
-    let url = "\(kUrlVideos)\(slug)"
+    let url = "\(ApiUrl.Videos.url)\(slug)"
     get(url, success: {
       json in
       let result = LctvVideo(json: json)
