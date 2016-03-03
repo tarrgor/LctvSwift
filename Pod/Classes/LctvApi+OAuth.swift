@@ -86,8 +86,8 @@ extension LctvApi {
           let oauthswift = OAuth2Swift(
             consumerKey:    authInfo.clientId,
             consumerSecret: authInfo.secret,
-            authorizeUrl:   kUrlLctvAuthorize,
-            accessTokenUrl: kUrlLctvToken,
+            authorizeUrl:   ApiUrl.urlLctvAuthorize,
+            accessTokenUrl: ApiUrl.urlLctvToken,
             responseType:   kOAuthResponseTypeCode
           )
           
@@ -96,7 +96,7 @@ extension LctvApi {
             kOAuthRefreshToken:authInfo.refreshToken,
             "client_id":authInfo.clientId,
           ]
-          oauthswift.client.post(kUrlLctvToken, parameters: parameters, headers: httpHeaders(), success: { data, response in
+          oauthswift.client.post(ApiUrl.urlLctvToken, parameters: parameters, headers: httpHeaders(), success: { data, response in
             let json = JSON(data: data)
             authInfo.accessToken = json[kOAuthAccessToken].string!
             authInfo.refreshToken = json[kOAuthRefreshToken].string!
