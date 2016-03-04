@@ -71,9 +71,12 @@ Initialization of LctvSwift is recommended within your apps `AppDelegate` class.
 So within that class declare a new variable:
 
 ```swift
-import LctvSwift
+@UIApplicationMain
+class AppDelegate: UIResponder, UIApplicationDelegate {
 
-var api: LctvApi!
+  var window: UIWindow?
+  var api: LctvApi?
+  var initialViewController: UIViewController!
 ```
 
 For initialization of the api you can write a function similar to this one:
@@ -150,9 +153,13 @@ self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
 
 let storyboard = UIStoryboard(name: "Main", bundle: nil)
 self.initialViewController = storyboard.instantiateInitialViewController()
-let loginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController")
 
-self.window?.rootViewController = self.api!.hasAccessToken() ? initialViewController : loginViewController
+if !self.api!.hasAccessToken() {
+  let loginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController")
+  self.window?.rootViewController = loginViewController
+} else {
+  self.window?.rootViewController = self.initialViewController
+}
 
 self.window?.makeKeyAndVisible()
 ```
@@ -245,7 +252,7 @@ to Livecoding. After successfully logging in, Livecoding will ask you if you wan
 to grant the listed permissions to your app. Press "authorize" and the browser 
 window disappears.
 
-Now if everything went well, your `LctvApi` instance is configured and authorized to 
+If everything went well, your `LctvApi` instance is configured and authorized to 
 call Livecoding API functions.
 
 Now it would be nice if the `LoginViewController` disappears when the user did 
