@@ -1,5 +1,11 @@
 ## ChangeLog
 
+### 0.6.5
+
+- Improved testability of the code
+- Added event handlers for authorization (success/failure)
+- Improved documentation
+
 ### 0.6.4
 
 - Added ChangeLog
