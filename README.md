@@ -41,13 +41,18 @@ This disables forced https-only connectivity. Within the authorization process
 the library starts an internal http-server, that's what this setting is necessary 
 for. May not be necessary in future versions, if the local server supports https.
 
+### Other requirements
+
+- Make sure that port 8080 is not used by another application/server. LctvSwift is
+using this port for its internal server during authorization.
+
 ## Installation
 
 LctvSwift is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
-pod "LctvSwift"
+pod 'LctvSwift'
 ```
 
 ## Example
@@ -62,8 +67,8 @@ clientId and secret.
 
 ### Initialize the API
 
-Let's assume you have a UIViewController and you want to initialize Livecoding API.
-To do this, create a new variable within the ViewController:
+Initialization of LctvSwift is recommended within your apps `AppDelegate` class.
+So within that class declare a new variable:
 
 ```swift
 import LctvSwift
@@ -76,9 +81,7 @@ For initialization of the api you can write a function similar to this one:
 ```swift
   func initApi() {
     do {
-      var config = LctvConfig()
-      config.clientId = "clientId"
-      config.clientSecret = "secret"
+      var config = LctvConfig(clientId: clientId, clientSecret: clientSecret)
       try api = LctvApi(config: config)
     } catch {
       print("Could not initialize. Aborting.")
@@ -115,16 +118,73 @@ debugging purposes.
 The grant type can be either `AuthorizationCode` or `Implicit`. Livecoding
 recommends using `Implicit` for mobile devices, but currently LctvSwift only
 supports `AuthorizationCode` due to some dependencies. `Implicit` grant type
-will be supported in a future version of LctvSwift. 
+may be supported in a future version of LctvSwift. 
 
-Call the `initApi` function from within `viewDidLoad`:
+Call the `initApi` function from within `application:didFinishLaunchingWithOptions:`:
 
 ```swift
-  override func viewDidLoad() {
-    super.viewDidLoad()
-
+  func application(application: UIApplication, 
+       didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
     initApi()
   }
+```
+
+Depending on your needs it might make sense to build in a switch within the 
+`AppDelegate` to decide to present a LoginViewController if the user has not 
+authorized your app yet or to directly present your main app view controller.
+
+The LoginViewController is different from other Login Screens in that it does not 
+provide Username and Password fields. Instead it should only provide a Button 
+e.g. "Login to Livecoding" which then starts the LctvSwift authorization process.
+
+This process will then present a WebViewController with the login and authorization
+form provided by Livecoding.TV.
+
+To achieve this switch, you can do that within the `AppDelegate` within the
+`application:didFinishLaunchingWithOptions:` method directly below the
+`initApi` call:
+
+```swift
+// Setup the application window
+self.window = UIWindow(frame: UIScreen.mainScreen().bounds)
+
+let storyboard = UIStoryboard(name: "Main", bundle: nil)
+self.initialViewController = storyboard.instantiateInitialViewController()
+let loginViewController = storyboard.instantiateViewControllerWithIdentifier("LoginViewController")
+
+self.window?.rootViewController = self.api!.hasAccessToken() ? initialViewController : loginViewController
+
+self.window?.makeKeyAndVisible()
+```
+
+You'll have to add the LoginViewController to the storyboard and assign it a
+storyboardId of `LoginViewController`.
+
+You can use the api's `hasAccessToken` method to check, if an access token is
+already in place.
+
+Now when starting the app, it will automatically present the "Login" screen when
+the user did not authorize yet. Otherwise it will directly switch to the app's
+main view controller (which is the initial view controller defined within the
+storyboard).
+
+### Extending UIViewController
+
+In the previous section you instantiated LctvSwift by creating a `LctvApi` instance
+within the `AppDelegate`. To make this instance available to all of your view 
+controllers it makes sense to create a small extension of `UIViewController`:
+
+```swift
+import UIKit
+import LctvSwift
+
+extension UIViewController {
+  
+  var lctvApi: LctvApi? {
+    return (UIApplication.sharedApplication().delegate as! AppDelegate).api
+  }
+  
+}
 ```
 
 ### Authorization
@@ -140,21 +200,22 @@ The grant type `Implicit` does not support refresh tokens so there may be the ne
 of re-authorization at some point. However, with `Implicit` you don't need to store
 your client secret on the device, so it may be more secure.
 
-Provide the following function to process the authorization with LctvSwift:
+Within your `LoginViewController` provide the following function to process the 
+authorization with LctvSwift:
 
 ```swift
-  func authorizeClient() {
-    let viewController = LctvAuthViewController()
-    viewController.view.frame = self.view.bounds
+func authorizeClient() {
+  let viewController = LctvAuthViewController()
+  viewController.view.frame = self.view.bounds
     
-    api.oAuthUrlHandler = viewController
+  api.oAuthUrlHandler = viewController
     
-    do {
-      try api.authorize(scope: "read chat")
-    } catch {
-      print("Could not authorize: \(error)")
-    }
+  do {
+    try api.authorize(scope: "read chat")
+  } catch {
+    print("Could not authorize: \(error)")
   }
+}
 ```
 
 As you can see, a new ViewController gets initialized within this function. It is
@@ -168,27 +229,64 @@ your app will need. The default is "read", which is a limited read permission. P
 read Livecoding API documentation for other permissions. The permissions within 
 `scope` are separated by spaces.
 
-Within `viewDidAppear` you now have to check if LctvSwift already has received an
-access token or not. If not, call our `authorizeClient` function:
+Now create a Login-Button in your storyboard within the `LoginViewController`. Add
+an action method for this button to the view controller class which calls the
+`authorizeClient` method:
 
 ```swift
-  override func viewDidAppear(animated: Bool) {
-    if !api.hasAccessToken() {
-      authorizeClient()
-    }
-  }
+@IBAction func loginButtonPressed(sender: UIButton) {
+  authorizeClient()
+}
 ```
 
-You can use the api's `hasAccessToken` method to check, if an access token is
-already in place.
-
-When you start your app now, as soon as your ViewController is appearing, a browser
-window should appear and you will be asked to login to Livecoding. After successfully
-logging in, Livecoding will ask you if you want to grant the listed permissions to 
-your app. Press "authorize" and the browser window disappears.
+When you start your app now, as soon as you press the Login-Button in your  
+`LoginViewController`, a browser window should appear and you will be asked to login 
+to Livecoding. After successfully logging in, Livecoding will ask you if you want 
+to grant the listed permissions to your app. Press "authorize" and the browser 
+window disappears.
 
 Now if everything went well, your `LctvApi` instance is configured and authorized to 
 call Livecoding API functions.
+
+Now it would be nice if the `LoginViewController` disappears when the user did 
+successfully authorize your app. Unfortunately you can't to this directly after
+the call to `authorize` because it is an asynchronous processing.
+
+To handle this, `LctvApi` offers two properties:
+
+```swift
+/// Handler which is called after successfully processing the authorization screen
+public var onAuthorizationSuccess: AuthSuccessHandler? = nil
+  
+/// Handler for errors during the authorization process
+public var onAuthorizationFailure: AuthFailureHandler? = nil
+```
+
+You can specify two functions here which get called when either the authorization
+has been successful or failed e.g. in `viewDidLoad`:
+
+```swift
+override func viewDidLoad() {
+  self.lctvApi!.onAuthorizationSuccess = authorizationSuccessful
+  self.lctvApi!.onAuthorizationFailure = authorizationFailure
+}
+```
+
+Now create those two functions:
+
+```swift
+func authorizationSuccessful() {
+  // Present the initial view controller
+  let appDelegate = UIApplication.sharedApplication().delegate as! AppDelegate
+  let viewController = appDelegate.initialViewController
+  self.presentViewController(viewController, animated: true, completion: nil)
+}
+
+func authorizationFailure(message: String) {
+  // Do some appropriate error handling here
+  print(message)
+}
+```
 
 ### Calling API functions
 
