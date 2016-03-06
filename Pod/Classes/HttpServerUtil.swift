@@ -13,6 +13,7 @@ import OAuthSwift
 class HttpServerUtil {
   
   var server: HttpServer = HttpServer()
+  var internalPort: UInt16 = 8080
   
   init() {
     
@@ -26,7 +27,7 @@ class HttpServerUtil {
   func startServer() throws {
     server["/oauth-callback"] = httpHandler
     do {
-      try server.start()
+      try server.start(internalPort)
     } catch {
       throw LctvInitError.StartLocalServerError(message: "Could not start local server")
     }
@@ -44,7 +45,7 @@ class HttpServerUtil {
       }
       qPath += "\(param.0)=\(param.1)"
     }
-    let url = "http://localhost:8080/oauth-callback\(qPath)"
+    let url = "http://localhost:\(internalPort)/oauth-callback\(qPath)"
     return NSURL(string: url)
   }
 }

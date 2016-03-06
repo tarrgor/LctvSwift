@@ -44,7 +44,7 @@ extension LctvApi {
       oauthswift.authorize_url_handler = handler
     }
     
-    oauthswift.authorizeWithCallbackURL( NSURL(string: ApiUrl.urlCallback)!,
+    oauthswift.authorizeWithCallbackURL( NSURL(string: ApiUrl.urlCallback(serverUtil.internalPort))!,
       scope: LctvScope.toScopeString(scope),
       state: state, success: {
         credential, response, parameters in

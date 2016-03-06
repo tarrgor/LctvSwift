@@ -14,7 +14,10 @@ enum ApiUrl : String {
   
   static var urlLctvAuthorize = "https://www.livecoding.tv/o/authorize/"
   static var urlLctvToken = "https://www.livecoding.tv/o/token/"
-  static var urlCallback = "http://localhost:8080/oauth-callback"
+
+  static func urlCallback(port: UInt16) -> String {
+    return "http://localhost:\(port)/oauth-callback"
+  }
   
   case CodingCategories = "/codingcategories/"
   case Livestreams = "/livestreams/"

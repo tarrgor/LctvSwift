@@ -17,9 +17,10 @@ class LctvAuthInfo : CreateableSecureStorable, GenericPasswordSecureStorable,
   var accessToken: String
   var refreshToken: String
   var grantType: LctvGrantType
+  var account: String
+
+  let service = kKeychainService
   
-  var account: String { return "lctv-swift" }
-  let service = "lctv.swift.LivecodingTV"
   var data: [String:AnyObject] {
     return [
       "clientId": clientId,
@@ -36,6 +37,7 @@ class LctvAuthInfo : CreateableSecureStorable, GenericPasswordSecureStorable,
     accessToken = ""
     refreshToken = ""
     grantType = .AuthorizationCode
+    account = kKeychainDefaultAccount
   }
   
   func hasAccessToken() -> Bool {

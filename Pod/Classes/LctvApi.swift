@@ -62,6 +62,8 @@ public class LctvApi {
    */
   public init (config: LctvConfig) throws {
     let authInfo = LctvAuthInfo()
+    authInfo.account = config.keychainId
+    
     if config.overwrite {
       do {
         try authInfo.deleteFromSecureStore()
@@ -73,14 +75,17 @@ public class LctvApi {
         throw LctvInitError.ApiInitializationError(message: "Need to specify clientId and secret if api is initialized for the first time.")
       }
     }
+    
     _authInfo = authInfo
+    serverUtil.internalPort = config.internalPort
   }
   
   /// Deinitializer. Stops any running http servers.
   deinit {
     serverUtil.stopServer()
   }
-    
+  
+  /// 
   func fillAuthInfoFromSecureStore(authInfo: LctvAuthInfo) -> Bool {
     if let loadedAuthInfo = loadAuthInfoFromKeychain(authInfo) {
       authInfo.accessToken = (loadedAuthInfo.data?["accessToken"] as? String) ?? ""

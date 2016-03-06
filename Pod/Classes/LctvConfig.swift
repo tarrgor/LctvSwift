@@ -53,6 +53,21 @@ public struct LctvConfig {
   public var grantType: LctvGrantType = .AuthorizationCode
   
   /**
+   The account id which is used to store secret information into the
+   device's keychain. Defaults to 'lctv-swift' but should be changed
+   to identify your app so it may not conflict with other apps using
+   LctvSwift on the same device.
+  */
+  public var keychainId: String = kKeychainDefaultAccount
+  
+  /**
+   The port used by the internal http server which is used during
+   authorization. Should only be changed when the default port
+   (8080) conflicts with other services within your app.
+  */
+  public var internalPort: UInt16 = 8080
+  
+  /**
    Set this to true if you want to overwrite any existing authorization
    info in the keychain. You will need to specify `clientId` and 
    `clientSecret` again with this config. Defaults to `false`.

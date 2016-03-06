@@ -18,6 +18,6 @@ let kMimeTypeJson = "application/json"
 let kHttpHeaderAuthorization = "Authorization"
 let kHttpHeaderAccept = "Accept"
 
-
-
+let kKeychainService = "lctv.swift.LivecodingTV"
+let kKeychainDefaultAccount = "lctv-swift"
 
