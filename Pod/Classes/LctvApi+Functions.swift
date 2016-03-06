@@ -11,6 +11,14 @@ import SwiftyJSON
 
 extension LctvApi {
   
+  /**
+   Retrieve a pageable list of coding categories from livecoding.tv. 
+   Result is given into the success() handler as a `LctvResultContainer`.
+   
+   - parameter page: Optional parameter to specify a concrete page to retrieve (defaults to 0).
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+  */
   public func getCodingCategories(page page: Int? = 0, success: (LctvResultContainer<LctvCodingCategory>) -> (), failure: (String, JSON?) -> ()) {
     get(ApiUrl.CodingCategories.url, page: page ?? 0, success: {
       json in
@@ -22,6 +30,14 @@ extension LctvApi {
     })
   }
   
+  /**
+   Retrieve a coding category by its name from livecoding.tv.
+   Result is given into the success() handler as a `LctvCodingCategory`.
+   
+   - parameter name: The name to be searched for.
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func getCodingCategoryByName(name: String, success: (LctvCodingCategory) -> (), failure: (String, JSON?) -> ()) {
     let url = ApiUrl.CodingCategories.url + "\(name)"
     get(url, success: {
@@ -34,6 +50,14 @@ extension LctvApi {
     })
   }
   
+  /**
+   Retrieve a pageable list of livestreams from livecoding.tv.
+   Result is given into the success() handler as a `LctvResultContainer`.
+   
+   - parameter page: Optional parameter to specify a concrete page to retrieve (defaults to 0).
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func getLivestreams(page page: Int? = 0, success: (LctvResultContainer<LctvLivestream>) -> (), failure: (String, JSON?) -> ()) {
     get(ApiUrl.Livestreams.url, page: page ?? 0, success: {
       json in
@@ -45,6 +69,14 @@ extension LctvApi {
     })
   }
   
+  /**
+   Retrieve a pageable list of livestreams which are currently on air from livecoding.tv.
+   Result is given into the success() handler as a `LctvResultContainer`.
+   
+   - parameter page: Optional parameter to specify a concrete page to retrieve (defaults to 0).
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func getLivestreamsOnAir(page page: Int? = 0, success: (LctvResultContainer<LctvLivestream>) -> (), failure: (String, JSON?) -> ()) {
     get(ApiUrl.LivestreamsOnAir.url, page: page ?? 0, success: {
       json in

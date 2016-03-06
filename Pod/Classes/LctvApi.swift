@@ -85,7 +85,9 @@ public class LctvApi {
     serverUtil.stopServer()
   }
   
-  /// 
+  /**
+    Load current stored secure information from the keychain.
+  */
   func fillAuthInfoFromSecureStore(authInfo: LctvAuthInfo) -> Bool {
     if let loadedAuthInfo = loadAuthInfoFromKeychain(authInfo) {
       authInfo.accessToken = (loadedAuthInfo.data?["accessToken"] as? String) ?? ""
@@ -101,6 +103,10 @@ public class LctvApi {
     return false
   }
   
+  /**
+   Initialize the secure information instance with data taken from the specified
+   configuration. Secret will then be stored in the keychain.
+  */
   func fillAuthInfoFromConfig(authInfo: LctvAuthInfo, config: LctvConfig) throws -> Bool {
     if let clientId = config.clientId, secret = config.clientSecret {
       if clientId.isEmpty || secret.isEmpty {
@@ -118,6 +124,7 @@ public class LctvApi {
     return false
   }
   
+  /// Store authInfo in the keychain
   func storeAuthInfoInKeychain(authInfo: LctvAuthInfo) throws {
     do {
       try authInfo.createInSecureStore()
@@ -126,6 +133,7 @@ public class LctvApi {
     }
   }
   
+  /// Read authInfo from keychain
   func loadAuthInfoFromKeychain(authInfo: LctvAuthInfo) -> GenericPasswordSecureStorableResultType? {
     return authInfo.readFromSecureStore()
   }
