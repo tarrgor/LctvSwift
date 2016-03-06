@@ -15,6 +15,7 @@
 		D694871AA0AE7A3DB7273C9A /* Pods_LctvSwift_Example.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5F1083F55293AF390E7CB4E6 /* Pods_LctvSwift_Example.framework */; };
 		EA0AC8981E4DB616C1B5C6A8 /* Pods_LctvSwift_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 306F55AEB5CFA4041FB3404D /* Pods_LctvSwift_Tests.framework */; };
 		F20B5DD31C7B84D200CFAEE3 /* UIViewController+Alerts.swift in Sources */ = {isa = PBXBuildFile; fileRef = F20B5DD21C7B84D200CFAEE3 /* UIViewController+Alerts.swift */; };
+		F236C30C1C8C9A8500F27425 /* Cartfile in Resources */ = {isa = PBXBuildFile; fileRef = F236C30B1C8C9A8500F27425 /* Cartfile */; };
 		F24672581C79DD80001A1AE4 /* ApiPageViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F24672571C79DD80001A1AE4 /* ApiPageViewController.swift */; };
 		F2530E3A1C7A356400442B90 /* Secret.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2530E391C7A356400442B90 /* Secret.swift */; };
 		F29173E21C84B229000B4D1C /* CHANGELOG.md in Sources */ = {isa = PBXBuildFile; fileRef = F29173E11C84B229000B4D1C /* CHANGELOG.md */; };
@@ -52,6 +53,7 @@
 		A080BA9B9B22A8023AF6AABF /* Pods-LctvSwift_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-LctvSwift_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-LctvSwift_Tests/Pods-LctvSwift_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		E3D99E0515BB5CD4A6030B5F /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
 		F20B5DD21C7B84D200CFAEE3 /* UIViewController+Alerts.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = "UIViewController+Alerts.swift"; sourceTree = "<group>"; };
+		F236C30B1C8C9A8500F27425 /* Cartfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; name = Cartfile; path = ../Cartfile; sourceTree = "<group>"; };
 		F24672571C79DD80001A1AE4 /* ApiPageViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiPageViewController.swift; sourceTree = "<group>"; };
 		F2530E391C7A356400442B90 /* Secret.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Secret.swift; sourceTree = "<group>"; };
 		F29173E11C84B229000B4D1C /* CHANGELOG.md */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = net.daringfireball.markdown; name = CHANGELOG.md; path = ../CHANGELOG.md; sourceTree = "<group>"; };
@@ -166,6 +168,7 @@
 		607FACF51AFB993E008FA782 /* Podspec Metadata */ = {
 			isa = PBXGroup;
 			children = (
+				F236C30B1C8C9A8500F27425 /* Cartfile */,
 				12A0B1424EC509956F741B2B /* LctvSwift.podspec */,
 				047877456086DFAD298F0FD6 /* README.md */,
 				E3D99E0515BB5CD4A6030B5F /* LICENSE */,
@@ -286,6 +289,7 @@
 			files = (
 				607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */,
 				607FACE01AFB9204008FA782 /* LaunchScreen.xib in Resources */,
+				F236C30C1C8C9A8500F27425 /* Cartfile in Resources */,
 				607FACDD1AFB9204008FA782 /* Images.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;

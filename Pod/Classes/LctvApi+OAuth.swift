@@ -22,7 +22,7 @@ extension LctvApi {
    
    - throws: `LctvInitError`
   */
-  public func authorize(scope scope: String = "read") throws {
+  public func authorize(scope scope: [LctvScope] = [.Read]) throws {
     guard let authInfo = _authInfo else {
       throw LctvInitError.AuthorizationInfoNotInitializedError
     }
@@ -45,7 +45,7 @@ extension LctvApi {
     }
     
     oauthswift.authorizeWithCallbackURL( NSURL(string: ApiUrl.urlCallback)!,
-      scope: scope,
+      scope: LctvScope.toScopeString(scope),
       state: state, success: {
         credential, response, parameters in
         self._authInfo?.accessToken = credential.oauth_token

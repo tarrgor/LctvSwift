@@ -1,5 +1,10 @@
 ## ChangeLog
 
+### 0.7.0
+
+- Scope can now be specified with help of an enum (LctvScope)
+- Carthage compatibility
+
 ### 0.6.5
 
 - Improved testability of the code

@@ -60,7 +60,7 @@ class ViewController: UIViewController {
     api.oAuthUrlHandler = viewController
     
     do {
-      try api.authorize(scope: "read read:viewer read:user read:channel chat")
+      try api.authorize(scope: [.Read, .ReadViewer, .ReadUser, .ReadChannel, .Chat])
     } catch {
       print("Could not authorize: \(error)")
     }

@@ -177,6 +177,7 @@
 		F1A4CBE77B495F7CC2C0BFA0E29F20F0 /* OAuthSwift.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 1139ED59E7EF11FE73E4336DFE5A71C7 /* OAuthSwift.framework */; };
 		F1D4A8A1FC68EFA7F45945908D70A352 /* BeNil.swift in Sources */ = {isa = PBXBuildFile; fileRef = 115A5AF189EE8967395619E6393054A7 /* BeNil.swift */; };
 		F1EA5D45E4E6F3FF3D6FD492813841DC /* QCKDSL.m in Sources */ = {isa = PBXBuildFile; fileRef = E1F928D670A3EBBF6653E2D165277F8B /* QCKDSL.m */; };
+		F236C3081C8C938600F27425 /* LctvScope.swift in Sources */ = {isa = PBXBuildFile; fileRef = F236C3071C8C938600F27425 /* LctvScope.swift */; };
 		F2F00B471C878E56006D4C38 /* ApiUrl.swift in Sources */ = {isa = PBXBuildFile; fileRef = F2F00B451C878A3C006D4C38 /* ApiUrl.swift */; };
 		F3881B726190315B60622DC8CBA9E250 /* OAuthSwiftMultipartData.swift in Sources */ = {isa = PBXBuildFile; fileRef = D50E276CB6AEA93924950EF1BCCDF795 /* OAuthSwiftMultipartData.swift */; settings = {COMPILER_FLAGS = "-fno-objc-arc"; }; };
 		F581325612AFCA65A6E0F84E8C106D15 /* QuickSpec.h in Headers */ = {isa = PBXBuildFile; fileRef = DB58E72096032568539E80C22010589A /* QuickSpec.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -562,6 +563,7 @@
 		F1BE376B38491560938034C5B193C5A7 /* ServerTrustPolicy.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = ServerTrustPolicy.swift; path = Source/ServerTrustPolicy.swift; sourceTree = "<group>"; };
 		F20630E25CBA7942A94A80CCD1B3FD3E /* Closures.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = Closures.swift; path = Quick/Hooks/Closures.swift; sourceTree = "<group>"; };
 		F22BF358DEAF4CB9405D9ED0F21CBE0A /* QCKDSL.h */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; name = QCKDSL.h; path = Quick/DSL/QCKDSL.h; sourceTree = "<group>"; };
+		F236C3071C8C938600F27425 /* LctvScope.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LctvScope.swift; sourceTree = "<group>"; };
 		F2921DE1CEF69E13FC1A475024828FBB /* Alamofire.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = "sourcecode.module-map"; path = Alamofire.modulemap; sourceTree = "<group>"; };
 		F2F00B451C878A3C006D4C38 /* ApiUrl.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = ApiUrl.swift; sourceTree = "<group>"; };
 		F5BECDB9592F4EEA0ED911B1BDCCD189 /* OAuthSwiftHTTPRequest.swift */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.swift; name = OAuthSwiftHTTPRequest.swift; path = OAuthSwift/OAuthSwiftHTTPRequest.swift; sourceTree = "<group>"; };
@@ -937,6 +939,7 @@
 				6039440FEBF40B5BD882C6A91AF4EF51 /* LctvUserChannel.swift */,
 				91182D4F1A87083476FA27A9F06B9A1F /* LctvVideo.swift */,
 				6E88E41DA6D788E4FA2FB7121E132A52 /* LctvXmppAccount.swift */,
+				F236C3071C8C938600F27425 /* LctvScope.swift */,
 			);
 			path = Classes;
 			sourceTree = "<group>";
@@ -1510,6 +1513,7 @@
 				A178536FB9680ED7755EED732C0E26DC /* LctvAuthViewController.swift in Sources */,
 				3188ABF7F7D491DBDBE8D5B1E9DFCC62 /* LctvCodingCategory.swift in Sources */,
 				F6AF29853A853A4C24B94A3F74B282DD /* LctvConfig.swift in Sources */,
+				F236C3081C8C938600F27425 /* LctvScope.swift in Sources */,
 				9950A70799CD1A792D0CC5CCBEAD2073 /* LctvErrors.swift in Sources */,
 				491DCAD57B100E15295A948EEA0D1EA8 /* LctvLanguage.swift in Sources */,
 				3DBAD6CC0CFA0C51059A7204B057F625 /* LctvLivestream.swift in Sources */,
