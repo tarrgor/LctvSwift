@@ -24,7 +24,7 @@ class ViewController: UIViewController {
       var config = LctvConfig()
       config.clientId = clientId
       config.clientSecret = secret
-      config.keychainId = "lctv-swift"
+      config.keychainId = "lctv-mxi1"
       try api = LctvApi(config: config)
     } catch {
       print("Could not initialize. Aborting.")

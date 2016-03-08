@@ -20,6 +20,7 @@ class HttpServerUtil {
   }
   
   func httpHandler(request: HttpRequest) -> HttpResponse {
+    // TODO: Handle error parameter if exists
     OAuthSwift.handleOpenURL(urlFromHttpRequest(request)!)
     return .OK(.Html("OK"))
   }

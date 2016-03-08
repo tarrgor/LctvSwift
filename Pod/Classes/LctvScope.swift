@@ -18,9 +18,14 @@ public enum LctvScope : String {
 
   static func toScopeString(scope: [LctvScope]) -> String {
     var result = ""
-    scope.forEach({ currentScope in
-      result += "\(currentScope.rawValue) "
-    })
+    var first: Bool = true
+    for currentScope in scope {
+      if !first {
+        result += " "
+      }
+      first = false
+      result += "\(currentScope.rawValue)"
+    }
     return result
   }
 }
