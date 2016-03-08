@@ -4,6 +4,9 @@
 
 - Scope can now be specified with help of an enum (LctvScope)
 - Carthage compatibility
+- Keychain identifier is now configurable
+- Internal server port is now configurable
+- Improved error messages of internal server
 
 ### 0.6.5
 
