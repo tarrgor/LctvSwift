@@ -34,9 +34,9 @@ Within your Info.plist file add the following setting:
 
 `AppTransportSecuritySettings`
 
- This is a Dictionary-Type entry. Add the following sub-entry to it:
+This is a Dictionary-Type entry. Add the following sub-entry to it:
 
- `Allow Arbitrary Loads = YES`
+`Allow Arbitrary Loads = YES`
 
 This disables forced https-only connectivity. Within the authorization process
 the library starts an internal http-server, that's what this setting is necessary
@@ -108,7 +108,7 @@ to do that in a secure way to prevent abuse of this information. After the first
 initialization, LctvSwift will store it securely into the device's keychain and
 therefore it does not have to be provided anymore.
 
-The `LctvConfig` class has two more properties:
+The `LctvConfig` class has more properties:
 
 `overwrite`:
 
@@ -132,6 +132,19 @@ Call the `initApi` function from within `application:didFinishLaunchingWithOptio
     initApi()
   }
 ```
+
+`keychainId`:
+
+The id which will be used to store and load secure information from the device's
+keychain. You should specify your own unique string here to make sure, that
+other apps which may also use LctvSwift won't conflict.
+
+`internalPort`:
+
+The internal port of the temporary http-server, which is used during authorization.
+If you have port conflicts, you can change the port here.
+
+### Preparing the authorization process
 
 Depending on your needs it might make sense to build in a switch within the
 `AppDelegate` to decide to present a LoginViewController if the user has not
