@@ -219,7 +219,7 @@ func authorizeClient() {
   api.oAuthUrlHandler = viewController
 
   do {
-    try api.authorize(scope: "read chat")
+    try api.authorize(scope: [.Read, .Chat])
   } catch {
     print("Could not authorize: \(error)")
   }
@@ -233,9 +233,21 @@ user to login to Livecoding and grant your app the needed permissions.
 This viewController is passed to the api via the `oAuthUrlHandler` property.
 
 With the `authorize` function you can specify a `scope` which defines the permissions
-your app will need. The default is "read", which is a limited read permission. Please
-read Livecoding API documentation for other permissions. The permissions within
-`scope` are separated by spaces.
+your app will need as an array of `LctvScope` values. The default is .Read, which
+is a limited read permission. All available permissions are defined within the
+`LctvScope` enumeration:
+
+```swift
+public enum LctvScope : String {
+
+  case Read = "read"
+  case ReadViewer = "read:viewer"
+  case ReadUser = "read:user"
+  case ReadChannel = "read:channel"
+  case Chat = "chat"
+  ...
+}
+```
 
 Now create a Login-Button in your storyboard within the `LoginViewController`. Add
 an action method for this button to the view controller class which calls the
