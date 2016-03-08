@@ -88,6 +88,14 @@ extension LctvApi {
     })
   }
   
+  /**
+   Retrieve the livestream of the specified user from livecoding.tv.
+   Result is given into the success() handler as a `LctvLivestream`.
+   
+   - parameter userSlug: The nickname of the user.
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func getLivestreamByUserSlug(userSlug: String, success: (LctvLivestream) -> (), failure: (String, JSON?) -> ()) {
     let url = ApiUrl.Livestreams.url + "\(userSlug)"
     get(url, success: {
@@ -100,6 +108,14 @@ extension LctvApi {
     })
   }
 
+  /**
+   Retrieve a pageable list of languages from livecoding.tv.
+   Result is given into the success() handler as a `LctvResultContainer`.
+   
+   - parameter page: Optional parameter to specify a concrete page to retrieve (defaults to 0).
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func getLanguages(page page: Int? = 0, success: (LctvResultContainer<LctvLanguage>) -> (), failure: (String, JSON?) -> ()) {
     get(ApiUrl.Languages.url, page: page ?? 0, success: {
       json in
@@ -178,6 +194,14 @@ extension LctvApi {
     })
   }
   
+  /**
+   Retrieve a pageable list of current user's videos from livecoding.tv.
+   Result is given into the success() handler as a `LctvResultContainer`.
+   
+   - parameter page: Optional parameter to specify a concrete page to retrieve (defaults to 0).
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func getUserVideos(page page: Int? = 0, success: (LctvResultContainer<LctvVideo>) -> (), failure: (String, JSON?) -> ()) {
     get(ApiUrl.UserVideos.url, page: page ?? 0, success: {
       json in
@@ -189,6 +213,14 @@ extension LctvApi {
     })
   }
   
+  /**
+   Retrieve a pageable list of current user's videos from livecoding.tv.
+   Result is given into the success() handler as a `LctvResultContainer`.
+   
+   - parameter page: Optional parameter to specify a concrete page to retrieve (defaults to 0).
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func getUserLatestVideos(page page: Int? = 0, success: (LctvResultContainer<LctvVideo>) -> (), failure: (String, JSON?) -> ()) {
     get(ApiUrl.UserLatestVideos.url, page: page ?? 0, success: {
       json in
@@ -200,6 +232,14 @@ extension LctvApi {
     })
   }
   
+  /**
+   Retrieve a pageable list of channels from livecoding.tv.
+   Result is given into the success() handler as a `LctvResultContainer`.
+   
+   - parameter page: Optional parameter to specify a concrete page to retrieve (defaults to 0).
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func getUserChannel(page page: Int? = 0, success: (LctvResultContainer<LctvUserChannel>) -> (), failure: (String, JSON?) -> ()) {
     get(ApiUrl.UserChannel.url, page: page ?? 0, success: {
       json in
@@ -211,6 +251,14 @@ extension LctvApi {
     })
   }
 
+  /**
+   Retrieve a pageable list of channels currently on air from livecoding.tv.
+   Result is given into the success() handler as a `LctvResultContainer`.
+   
+   - parameter page: Optional parameter to specify a concrete page to retrieve (defaults to 0).
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func getUserChannelOnAir(page page: Int? = 0, success: (LctvResultContainer<LctvUserChannel>) -> (), failure: (String, JSON?) -> ()) {
     get(ApiUrl.UserChannelOnAir.url, page: page ?? 0, success: {
       json in
@@ -234,6 +282,14 @@ extension LctvApi {
     })
   }
 
+  /**
+   Retrieve a pageable list of scheduled broadcasts from livecoding.tv.
+   Result is given into the success() handler as a `LctvResultContainer`.
+   
+   - parameter page: Optional parameter to specify a concrete page to retrieve (defaults to 0).
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func getScheduledBroadcasts(page page: Int? = 0, success: (LctvResultContainer<LctvScheduledBroadcast>) -> (), failure: (String, JSON?) -> ()) {
     get(ApiUrl.ScheduledBroadcasts.url, page: page ?? 0, success: {
       json in
@@ -257,6 +313,14 @@ extension LctvApi {
     })
   }
   
+  /**
+   Retrieve a pageable list of videos from livecoding.tv.
+   Result is given into the success() handler as a `LctvResultContainer`.
+   
+   - parameter page: Optional parameter to specify a concrete page to retrieve (defaults to 0).
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func getVideos(page page: Int? = 0, success: (LctvResultContainer<LctvVideo>) -> (), failure: (String, JSON?) -> ()) {
     get(ApiUrl.Videos.url, page: page ?? 0, success: {
       json in
@@ -280,6 +344,15 @@ extension LctvApi {
     })
   }
   
+  /**
+   With a given `LctvResultContainer` this method will retrieve the next page if it exists.
+   The success handler will receive a new `LctvResultContainer` with the next elements. You
+   can configure the page size by using the `pageSize` property of the `LctvApi` instance.
+   
+   - parameter result: The current `LctvResultContainer`.
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+  */
   public func nextPage<T: JSONInitializable>(result: LctvResultContainer<T>, success: (LctvResultContainer<T>) -> (), failure: (String, JSON?) -> ()) {
     if let next = result.next {
       get(next, success: {
@@ -292,6 +365,15 @@ extension LctvApi {
     }
   }
 
+  /**
+   With a given `LctvResultContainer` this method will retrieve the previous page if it exists.
+   The success handler will receive a new `LctvResultContainer` with the previous elements. You
+   can configure the page size by using the `pageSize` property of the `LctvApi` instance.
+   
+   - parameter result: The current `LctvResultContainer`.
+   - parameter success: A handler function which is executed in case of success.
+   - parameter failure: A handler function for handling errors.
+   */
   public func previousPage<T: JSONInitializable>(result: LctvResultContainer<T>, success: (LctvResultContainer<T>) -> (), failure: (String, JSON?) -> ()) {
     if let prev = result.previous {
       get(prev, success: {
