@@ -21,7 +21,7 @@ enum ApiUrl : String {
   
   case CodingCategories = "/codingcategories/"
   case Livestreams = "/livestreams/"
-  case LivestreamsOnAir = "/livestreams/onair"
+  case LivestreamsOnAir = "/livestreams/onair/"
   case Languages = "/languages/"
   case CurrentUser = "/user/"
   case Followers = "/user/followers/"
