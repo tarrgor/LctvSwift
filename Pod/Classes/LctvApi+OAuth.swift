@@ -139,6 +139,16 @@ extension LctvApi {
   }
   
   /**
+   Retrieve the current access token if available. May return nil in case of an incorrect
+   initialized api instance.
+   
+   - returns: The current access token if available. Nil otherwise.
+  */
+  public func getAccessToken() -> String? {
+    return _authInfo?.accessToken
+  }
+  
+  /**
    Retrieve a set of http headers including the authorization information
 
    - returns: A dictionary with http header information needed to authorize against livecoding.
