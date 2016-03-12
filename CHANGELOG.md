@@ -1,5 +1,11 @@
 ## ChangeLog
 
+### 0.7.1
+
+- Bugfix: Wrong url for onair-Livestreams
+- Added getAccessToken() method
+- Added Carthage section to README
+
 ### 0.7.0
 
 - Scope can now be specified with help of an enum (LctvScope)
