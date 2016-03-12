@@ -49,12 +49,26 @@ using this port for its internal server during authorization.
 
 ## Installation
 
+### CocoaPods
+
 LctvSwift is available through [CocoaPods](http://cocoapods.org). To install
 it, simply add the following line to your Podfile:
 
 ```ruby
 pod 'LctvSwift'
 ```
+
+### Carthage
+
+Tu install LctvSwift via Carthage add the following line to your Cartfile:
+
+```
+github "tarrgor/LctvSwift"
+```
+
+Run `carthage update`.
+
+Then proceed by adding the generated frameworks to your XCode project. See Carthage docs for further information.
 
 ## Example
 
