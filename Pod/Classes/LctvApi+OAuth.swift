@@ -164,7 +164,7 @@ extension LctvApi {
     ]
   }
 
-  /* -- For debugging only
+  /* -- For debugging only */
   public func logAuthInfo() {
     print("AuthInfo:")
     print("=========")
@@ -173,5 +173,5 @@ extension LctvApi {
     print("Token   : \(_authInfo?.accessToken)")
     print("RefToken: \(_authInfo?.refreshToken)")
   }
-  */
+  /**/
 }

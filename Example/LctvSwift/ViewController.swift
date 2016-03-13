@@ -55,8 +55,11 @@ class ViewController: UIViewController {
   }
   
   func authorizeClient() {
-    let viewController = LctvAuthViewController()
+    let viewController:LctvAuthViewController = LctvAuthViewController()
     viewController.view.frame = self.view.bounds
+    viewController.onCancel = {
+      print("User cancelled")
+    }
     
     api.oAuthUrlHandler = viewController
     
