@@ -16,9 +16,22 @@ public final class LctvAuthViewController : OAuthWebViewController {
   var webView: UIWebView = UIWebView()
   var targetURL: NSURL = NSURL()
   var toolbar: UIToolbar = UIToolbar()
+  var cancelItem: UIBarButtonItem?
   
   public var onCancel: CancelHandler? = nil
 
+  public var toolbarTintColor: UIColor = UIColor.blackColor() {
+    didSet {
+      toolbar.barTintColor = toolbarTintColor
+    }
+  }
+  
+  public var cancelButtonColor: UIColor = UIColor.whiteColor() {
+    didSet {
+      cancelItem?.tintColor = cancelButtonColor
+    }
+  }
+  
   public override func viewDidLoad() {
     super.viewDidLoad()
     
@@ -33,11 +46,12 @@ public final class LctvAuthViewController : OAuthWebViewController {
   
     let statusBarHeight = UIApplication.sharedApplication().statusBarFrame.height
     toolbar.frame = CGRect(x: 0, y: 0, width: self.view.bounds.size.width, height: 44 + statusBarHeight)
-    toolbar.barTintColor = UIColor.blackColor()
+    toolbar.barTintColor = toolbarTintColor
     view.addSubview(toolbar)
     
-    let cancelItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: "cancelButtonPressed:")
-    toolbar.setItems([cancelItem], animated: true)
+    cancelItem = UIBarButtonItem(barButtonSystemItem: .Cancel, target: self, action: #selector(LctvAuthViewController.cancelButtonPressed(_:)))
+    cancelItem!.tintColor = UIColor.whiteColor()
+    toolbar.setItems([cancelItem!], animated: true)
 
     loadAddressUrl()
   }
