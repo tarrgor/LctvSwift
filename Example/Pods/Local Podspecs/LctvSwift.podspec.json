@@ -1,6 +1,6 @@
 {
   "name": "LctvSwift",
-  "version": "0.6.5",
+  "version": "0.7.2",
   "summary": "A framework for accessing Livecoding TV REST API.",
   "description": "A framework for accessing Livecoding TV REST API. This library is currently\nstill under development, but it is already feature complete regarding the\ncurrent version of LivecodingTV API.",
   "homepage": "https://github.com/tarrgor/LctvSwift",
@@ -10,7 +10,7 @@
   },
   "source": {
     "git": "https://github.com/tarrgor/LctvSwift.git",
-    "tag": "0.6.5"
+    "tag": "0.7.2"
   },
   "social_media_url": "https://twitter.com/SwiftKarrmarr",
   "platforms": {
