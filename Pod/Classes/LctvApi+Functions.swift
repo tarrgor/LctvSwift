@@ -39,7 +39,7 @@ extension LctvApi {
    - parameter failure: A handler function for handling errors.
    */
   public func getCodingCategoryByName(name: String, success: (LctvCodingCategory) -> (), failure: (String, JSON?) -> ()) {
-    let url = ApiUrl.CodingCategories.url + "\(name)"
+    let url = ApiUrl.CodingCategories.url + "\(name)/"
     get(url, success: {
       json in
       let result = LctvCodingCategory(json: json)
@@ -97,7 +97,7 @@ extension LctvApi {
    - parameter failure: A handler function for handling errors.
    */
   public func getLivestreamByUserSlug(userSlug: String, success: (LctvLivestream) -> (), failure: (String, JSON?) -> ()) {
-    let url = ApiUrl.Livestreams.url + "\(userSlug)"
+    let url = ApiUrl.Livestreams.url + "\(userSlug)/"
     get(url, success: {
       json in
       let result = LctvLivestream(json: json)
@@ -128,7 +128,7 @@ extension LctvApi {
   }
   
   public func getLanguageByName(name: String, success: (LctvLanguage) -> (), failure: (String, JSON?) -> ()) {
-    let url = ApiUrl.Languages.url + "\(name)"
+    let url = ApiUrl.Languages.url + "\(name)/"
     get(url, success: {
       json in
       let result = LctvLanguage(json: json)
@@ -271,7 +271,7 @@ extension LctvApi {
   }
   
   public func getUserProfileBySlug(slug: String, success: (LctvUser) -> (), failure: (String, JSON?) -> ()) {
-    let url = "\(ApiUrl.UserProfile.url)\(slug)"
+    let url = "\(ApiUrl.UserProfile.url)\(slug)/"
     get(url, success: {
       json in
       let result = LctvUser(json: json)
@@ -302,7 +302,7 @@ extension LctvApi {
   }
   
   public func getScheduledBroadcastById(id: Int, success: (LctvScheduledBroadcast) -> (), failure: (String, JSON?) -> ()) {
-    let url = "\(ApiUrl.ScheduledBroadcasts.url)\(id)"
+    let url = "\(ApiUrl.ScheduledBroadcasts.url)\(id)/"
     get(url, success: {
       json in
       let result = LctvScheduledBroadcast(json: json)
@@ -333,7 +333,7 @@ extension LctvApi {
   }
   
   public func getVideoBySlug(slug: String, success: (LctvVideo) -> (), failure: (String, JSON?) -> ()) {
-    let url = "\(ApiUrl.Videos.url)\(slug)"
+    let url = "\(ApiUrl.Videos.url)\(slug)/"
     get(url, success: {
       json in
       let result = LctvVideo(json: json)
