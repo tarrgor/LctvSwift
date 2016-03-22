@@ -1,5 +1,10 @@
 ## ChangeLog
 
+### 0.7.2
+
+- Added Cancel button to LctvAuthViewController
+- Updated for Swift 2.2
+
 ### 0.7.1
 
 - Bugfix: Wrong url for onair-Livestreams
