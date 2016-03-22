@@ -1,5 +1,9 @@
 ## ChangeLog
 
+### 0.7.3
+
+- Fixed an issue with some api calls
+
 ### 0.7.2
 
 - Added Cancel button to LctvAuthViewController
