@@ -1,5 +1,9 @@
 ## ChangeLog
 
+### 0.8.0
+
+- Updated to new multiplatform project structure
+
 ### 0.7.3
 
 - Fixed an issue with some api calls
