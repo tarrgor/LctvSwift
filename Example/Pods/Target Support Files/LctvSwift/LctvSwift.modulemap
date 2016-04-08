@@ -1,6 +1,0 @@
-framework module LctvSwift {
-  umbrella header "LctvSwift-umbrella.h"
-
-  export *
-  module * { export * }
-}
