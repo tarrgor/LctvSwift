@@ -138,15 +138,6 @@ recommends using `Implicit` for mobile devices, but currently LctvSwift only
 supports `AuthorizationCode` due to some dependencies. `Implicit` grant type
 may be supported in a future version of LctvSwift.
 
-Call the `initApi` function from within `application:didFinishLaunchingWithOptions:`:
-
-```swift
-  func application(application: UIApplication,
-       didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
-    initApi()
-  }
-```
-
 `keychainId`:
 
 The id which will be used to store and load secure information from the device's
@@ -157,6 +148,15 @@ other apps which may also use LctvSwift won't conflict.
 
 The internal port of the temporary http-server, which is used during authorization.
 If you have port conflicts, you can change the port here.
+
+Call the `initApi` function from within `application:didFinishLaunchingWithOptions:`:
+
+```swift
+  func application(application: UIApplication,
+       didFinishLaunchingWithOptions launchOptions: [NSObject: AnyObject]?) -> Bool {
+    initApi()
+  }
+```
 
 ### Preparing the authorization process
 
@@ -412,11 +412,6 @@ api.getCurrentUserFollowers(success: {
 In the example above, the `result` passed into the `success` closure is of type
 `LctvArrayContainer<LctvUser>`. It has a property `array` which contains all
 received `LctvUser`-instances.
-
-
-## Author
-
-Thorsten Klusemann, tklusemann.dev(AT)gmail.com
 
 ## License
 
