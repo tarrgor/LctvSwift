@@ -25,7 +25,7 @@ Pod::Spec.new do |s|
   s.homepage         = "https://github.com/tarrgor/LctvSwift"
   # s.screenshots     = "www.example.com/screenshots_1", "www.example.com/screenshots_2"
   s.license          = 'MIT'
-  s.author           = { "drswift" => "drswift@outlook.de" }
+  s.author           = { "drswifty" => "drswifty@outlook.de" }
   s.source           = { :git => "https://github.com/tarrgor/LctvSwift.git", :tag => s.version.to_s }
 
   #s.platform     = :ios, '8.0'
