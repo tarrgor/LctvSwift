@@ -2,7 +2,6 @@
 //  MockServer.swift
 //  LctvSwift
 //
-//  Created by Thorsten Klusemann on 02.03.16.
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 

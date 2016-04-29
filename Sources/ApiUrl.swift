@@ -2,7 +2,6 @@
 //  ApiUrls.swift
 //  Pods
 //
-//  Created by Thorsten Klusemann on 02.03.16.
 //
 //
 

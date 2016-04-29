@@ -2,7 +2,6 @@
 //  LctvAuthViewController.swift
 //  Pods
 //
-//  Created by Thorsten Klusemann on 20.02.16.
 //
 //
 

@@ -2,7 +2,6 @@
 //  Secret.swift
 //  LctvSwift
 //
-//  Created by Thorsten Klusemann on 21.02.16.
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 

@@ -2,7 +2,6 @@
 //  LctvConfig.swift
 //  Pods
 //
-//  Created by Thorsten Klusemann on 27.02.16.
 //
 //
 

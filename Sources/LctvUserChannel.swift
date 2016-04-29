@@ -2,7 +2,6 @@
 //  LctvUserChannel.swift
 //  Pods
 //
-//  Created by Thorsten Klusemann on 24.02.16.
 //
 //
 

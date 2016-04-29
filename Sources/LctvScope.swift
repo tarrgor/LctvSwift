@@ -2,7 +2,6 @@
 //  LctvScope.swift
 //  Pods
 //
-//  Created by Thorsten Klusemann on 06.03.16.
 //
 //
 

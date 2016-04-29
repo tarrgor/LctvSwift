@@ -2,7 +2,6 @@
 //  LctvArrayContainer.swift
 //  Pods
 //
-//  Created by Thorsten Klusemann on 23.02.16.
 //
 //
 

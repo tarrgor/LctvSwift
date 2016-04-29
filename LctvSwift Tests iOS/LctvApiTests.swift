@@ -2,7 +2,6 @@
 //  LctvApiTests.swift
 //  LctvSwift
 //
-//  Created by Thorsten Klusemann on 28.02.16.
 //  Copyright © 2016 CocoaPods. All rights reserved.
 //
 

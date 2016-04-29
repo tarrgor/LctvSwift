@@ -2,7 +2,6 @@
 //  LctvXmppAccount.swift
 //  Pods
 //
-//  Created by Thorsten Klusemann on 22.02.16.
 //
 //
 

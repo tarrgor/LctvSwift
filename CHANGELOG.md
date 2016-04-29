@@ -1,5 +1,13 @@
 ## ChangeLog
 
+### 0.8.2
+
+- More minor improvements
+
+### 0.8.1
+
+- Some minor adjustments
+
 ### 0.8.0
 
 - Updated to new multiplatform project structure

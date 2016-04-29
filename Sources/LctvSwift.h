@@ -2,7 +2,6 @@
 //  LctvSwift.h
 //  LctvSwift
 //
-//  Created by Thorsten Klusemann on 31.03.16.
 //
 //
 

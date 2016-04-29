@@ -2,7 +2,6 @@
 //  LctvApi+OAuth.swift
 //  Pods
 //
-//  Created by Thorsten Klusemann on 21.02.16.
 //
 //
 

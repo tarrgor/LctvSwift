@@ -2,8 +2,6 @@
 //  ViewController.swift
 //  LctvSwift
 //
-//  Created by Thorsten Klusemann on 02/18/2016.
-//  Copyright (c) 2016 Thorsten Klusemann. All rights reserved.
 //
 
 import UIKit
