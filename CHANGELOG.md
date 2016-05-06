@@ -1,5 +1,9 @@
 ## ChangeLog
 
+### 0.8.3
+
+- Add support for avatars and thumbnails
+
 ### 0.8.2
 
 - More minor improvements

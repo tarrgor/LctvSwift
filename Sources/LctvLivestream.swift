@@ -22,6 +22,7 @@ public struct LctvLivestream : JSONInitializable {
   public var isLive: Bool?
   public var viewersLive: Int?
   public var viewingUrls: Array<String>?
+  public var thumbnailUrl: String?
 
   public init(json: JSON) {
     url = json["url"].string
@@ -36,6 +37,7 @@ public struct LctvLivestream : JSONInitializable {
     isLive = json["is_live"].bool
     viewersLive = json["viewers_live"].int
     viewingUrls = []
+    thumbnailUrl = json["thumbnail_url"].string
     
     let urls = json["viewing_urls"].arrayObject
     urls?.forEach({ url in

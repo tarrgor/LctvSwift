@@ -24,6 +24,7 @@ public struct LctvUser : JSONInitializable {
   public var registrationDate: String?
   public var timeZone: String?
   public var viewingKey: String?
+  public var avatar: String?
   
   public init(json: JSON) {
     url = json["url"].string
@@ -39,6 +40,7 @@ public struct LctvUser : JSONInitializable {
     registrationDate = json["registration_date"].string
     timeZone = json["timezone"].string
     viewingKey = json["viewing_key"].string
+    avatar = json["avatar"].string
     
     let wantLearnArray = json["want_learn"].arrayObject
     wantLearnArray?.forEach({ entry in
