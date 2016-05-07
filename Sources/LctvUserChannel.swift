@@ -23,6 +23,7 @@ public struct LctvUserChannel : JSONInitializable {
   public var viewingUrls: Array<String> = []
   public var streamingKey: String?
   public var streamingUrl: String?
+  public var thumbnailUrl: String?
   
   public init(json: JSON) {
     url = json["url"].string
@@ -38,6 +39,7 @@ public struct LctvUserChannel : JSONInitializable {
     viewersLive = json["viewers_live"].int
     streamingKey = json["streaming_key"].string
     streamingUrl = json["streaming_url"].string
+    thumbnailUrl = json["thumbnail_url"].string
     
     if let urls = json["viewing_urls"].arrayObject {
       urls.forEach({ url in
