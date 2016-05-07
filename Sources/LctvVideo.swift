@@ -24,6 +24,7 @@ public struct LctvVideo : JSONInitializable {
   public var region: String?
   public var viewersOverall: Int?
   public var viewingUrls: Array<String> = []
+  public var thumbnailUrl: String?
   
   public init(json: JSON) {
     url = json["url"].string
@@ -39,6 +40,7 @@ public struct LctvVideo : JSONInitializable {
     duration = json["duration"].int
     region = json["region"].string
     viewersOverall = json["viewers_overall"].int
+    thumbnailUrl = json["thumbnail_url"].string
 
     if let urls = json["viewing_urls"].arrayObject {
       urls.forEach({ object in

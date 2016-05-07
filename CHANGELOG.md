@@ -1,5 +1,9 @@
 ## ChangeLog
 
+### 0.8.4
+
+- Add support for thumbnails with videos
+
 ### 0.8.3
 
 - Add support for avatars and thumbnails
