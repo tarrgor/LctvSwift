@@ -1,0 +1,10 @@
+stages:
+  - build
+
+build_code:
+  stage: build
+  script:
+    - xcodebuild clean -project LctvSwift.xcodeproj -scheme "LctvSwift iOS" | xcpretty
+    - xcodebuild test -project LctvSwift.xcodeproj -scheme 'LctvSwift Tests iOS' -destination 'platform=iOS Simulator,name=iPhone 6s,OS=9.3' | xcpretty -c && exit ${PIPESTATUS[0]}
+  tags:
+    - ios
