@@ -1,0 +1,72 @@
+{
+  "DVTSourceControlWorkspaceBlueprintPrimaryRemoteRepositoryKey" : "7E4CEF163F7ED32E055F9AB44BF9614DF71BF3D7",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyRepositoryLocationsKey" : {
+
+  },
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyStatesKey" : {
+    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64" : 0,
+    "95438028B10BBB846574013D29F154A00556A9D1" : 0,
+    "67620B5EFA902936DF04070AF595B76AB0333747" : 0,
+    "A65BCAA9B7A77500BBF95593800C3F1B9D215F5E" : 0,
+    "75224C288D14A799245F99223249EF48FF5DC280" : 0,
+    "C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3" : 0,
+    "7E4CEF163F7ED32E055F9AB44BF9614DF71BF3D7" : 0,
+    "4E8FE33026C73951A712CD33348204351A71B278" : 0
+  },
+  "DVTSourceControlWorkspaceBlueprintIdentifierKey" : "E52B589E-4204-4012-B779-B4A5DC6B228F",
+  "DVTSourceControlWorkspaceBlueprintWorkingCopyPathsKey" : {
+    "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64" : "LctvSwift\/Carthage\/Checkouts\/Quick\/",
+    "95438028B10BBB846574013D29F154A00556A9D1" : "LctvSwift\/Carthage\/Checkouts\/Quick\/Externals\/Nimble\/",
+    "67620B5EFA902936DF04070AF595B76AB0333747" : "LctvSwift\/Carthage\/Checkouts\/Alamofire\/",
+    "A65BCAA9B7A77500BBF95593800C3F1B9D215F5E" : "LctvSwift\/Carthage\/Checkouts\/OAuthSwift\/",
+    "75224C288D14A799245F99223249EF48FF5DC280" : "LctvSwift\/Carthage\/Checkouts\/swifter\/",
+    "C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3" : "LctvSwift\/Carthage\/Checkouts\/SwiftyJSON\/",
+    "7E4CEF163F7ED32E055F9AB44BF9614DF71BF3D7" : "LctvSwift\/",
+    "4E8FE33026C73951A712CD33348204351A71B278" : "LctvSwift\/Carthage\/Checkouts\/Locksmith\/"
+  },
+  "DVTSourceControlWorkspaceBlueprintNameKey" : "LctvSwift",
+  "DVTSourceControlWorkspaceBlueprintVersion" : 204,
+  "DVTSourceControlWorkspaceBlueprintRelativePathToProjectKey" : "LctvSwift.xcodeproj",
+  "DVTSourceControlWorkspaceBlueprintRemoteRepositoriesKey" : [
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/matthewpalmer\/Locksmith.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "4E8FE33026C73951A712CD33348204351A71B278"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Alamofire\/Alamofire.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "67620B5EFA902936DF04070AF595B76AB0333747"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/httpswift\/swifter.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "75224C288D14A799245F99223249EF48FF5DC280"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/tarrgor\/LctvSwift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "7E4CEF163F7ED32E055F9AB44BF9614DF71BF3D7"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Nimble.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "95438028B10BBB846574013D29F154A00556A9D1"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/OAuthSwift\/OAuthSwift.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "A65BCAA9B7A77500BBF95593800C3F1B9D215F5E"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/SwiftyJSON\/SwiftyJSON.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "C861FC00CEE0F6A6BE81FCFF6785FAA78C58EBB3"
+    },
+    {
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryURLKey" : "https:\/\/github.com\/Quick\/Quick.git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositorySystemKey" : "com.apple.dt.Xcode.sourcecontrol.Git",
+      "DVTSourceControlWorkspaceBlueprintRemoteRepositoryIdentifierKey" : "D0725CAC6FF2D66F2C83C2C48DC12106D42DAA64"
+    }
+  ]
+}
